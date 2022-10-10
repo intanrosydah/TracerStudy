@@ -80,11 +80,11 @@
                     </div>
                     <div class="form-row mt-4">
                         <div class="col">
-                            <label for="bidang_instansi">Bidang Instansi/Industri</label> <span class="float-right text-success">(Tidak Wajib)</span>
+                            <label for="bidang_instansi">Bidang Instansi/Industri</label> <span class="float-right">(Optoinal)</span>
                             <input type="text" class="form-control" name="bidang_instansi" placeholder="Cth : IT">
                         </div>
                         <div class="col">
-                            <label for="posisi_pekerjaan">Posisi Pekerjaan</label> <span class="float-right text-success">(Tidak Wajib)</span>
+                            <label for="posisi_pekerjaan">Posisi Pekerjaan</label> <span class="float-right">(Optional)</span>
                             <input type="text" class="form-control" name="posisi_pekerjaan" placeholder="Cth : Programmer">
                         </div>
                     </div>
