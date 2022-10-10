@@ -16,9 +16,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/login', [LoginController::class, 'index'])->name('login');
+// authenticate
+Route::get('/', [LoginController::class, 'index'])->name('login');
 Route::post('/authenticate', [LoginController::class, 'authenticate'])->name('authenticate');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-Route::get('/form-alumni', [FormAlumniController::class, 'index'])->name('form-alumni');
+
+// dashboard
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
+
+// alumni
+Route::prefix('form-alumni')->middleware('auth')->group(function () {
+    Route::get('/', [FormAlumniController::class, 'index'])->name('form-alumni');
+    Route::post('/store', [FormAlumniController::class, 'store'])->name('form-alumni.store');
+});
 

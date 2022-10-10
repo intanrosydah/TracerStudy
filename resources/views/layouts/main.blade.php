@@ -60,12 +60,12 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Yakin akan logout?</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Yakin anda akan logout?</div>
+                <div class="modal-body">Anda akan keluar dari halaman ini!</div>
                 <form action="{{ route('logout') }}" method="post">
                     {{ csrf_field() }}
                     <div class="modal-footer">

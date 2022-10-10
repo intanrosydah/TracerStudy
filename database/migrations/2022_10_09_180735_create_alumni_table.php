@@ -15,6 +15,17 @@ class CreateAlumniTable extends Migration
     {
         Schema::create('alumni', function (Blueprint $table) {
             $table->id();
+            $table->string('nama_lengkap');
+            $table->date('tanggal_lahir');
+            $table->string('jenis_kelamin');
+            $table->integer('id_status_menikah');
+            $table->integer('id_alumni_angkatan');
+            $table->integer('id_jurusan');
+            $table->integer('id_posisi_saat_ini');
+            $table->string('nama_instansi')->nullable();
+            $table->string('bidang_instansi')->nullable();
+            $table->string('posisi_pekerjaan')->nullable();
+            $table->string('alamat_lengkap')->nullable();
             $table->timestamps();
         });
     }
