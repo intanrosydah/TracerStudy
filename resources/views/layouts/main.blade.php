@@ -79,6 +79,9 @@
 
    {{-- script js --}}
    @include('includes.script')
+
+   {{-- js --}}
+   @stack('js')
 </body>
 
 </html>

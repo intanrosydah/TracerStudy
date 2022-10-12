@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Alumni\AlumniController;
 use App\Http\Controllers\Alumni\FormAlumniController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DashboardController;
@@ -28,5 +29,10 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('aut
 Route::prefix('form-alumni')->middleware('auth')->group(function () {
     Route::get('/', [FormAlumniController::class, 'index'])->name('form-alumni');
     Route::post('/store', [FormAlumniController::class, 'store'])->name('form-alumni.store');
+});
+
+Route::prefix('alumni')->middleware('auth')->group(function () {
+    Route::get('/', [AlumniController::class, 'index'])->name('alumni.index');
+    Route::post('/store', [AlumniController::class, 'store'])->name('alumni.store');
 });
 

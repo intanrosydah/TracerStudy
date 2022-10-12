@@ -19,7 +19,7 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{ route('alumni.index') }}">
             <i class="fas fa-fw fa-users"></i>
             <span>Data Alumni</span></a>
     </li>
