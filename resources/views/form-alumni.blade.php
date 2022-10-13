@@ -11,7 +11,7 @@
             <div class="card-header">
                 Silakan isi data alumni
               </div>
-            <div class="card-body">
+            <div class="card-body mx-3">
                 <form action="{{ route('form-alumni.store') }}" method="post">
                     {{ csrf_field() }}
                     <div class="form-row">
@@ -95,7 +95,7 @@
                         </div>
                     </div>
                     <div class="mt-5 text-right">
-                        <button type="reset" class="btn btn-secondary mx-2">Reset</button>
+                        <button type="reset" class="btn btn-secondary mx-1">Reset</button>
                         <button type="submit" class="btn btn-primary"><i class="fas fa-fw fa-check"></i> Submit</button>
                     </div>
                 </form>

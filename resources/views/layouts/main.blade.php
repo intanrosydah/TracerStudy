@@ -32,6 +32,7 @@
 
                     @yield('title')
                     @yield('content')
+                    @yield('modal-content')
 
                 </div>
                 <!-- /.container-fluid -->
