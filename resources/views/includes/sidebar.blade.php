@@ -5,6 +5,9 @@
         <div class="sidebar-brand-text mx-3">Tracer Study</div>
     </a>
 
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
+
     <!-- Nav Item - Dashboard -->
     <li class="nav-item">
         <a class="nav-link" href="{{ route('dashboard') }}">
@@ -12,11 +15,27 @@
             <span>Dashboard</span></a>
     </li>
 
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Form Data
+    </div>
+
     <li class="nav-item">
-        <a class="nav-link" href="{{ route('form-alumni') }}">
+        <a class="nav-link" href="{{ route('form-alumni.index') }}">
             <i class="fas fa-fw fa-file-invoice"></i>
             <span>Form Data Alumni</span></a>
     </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+     <!-- Heading -->
+     <div class="sidebar-heading">
+        Master Base
+    </div>
 
     <li class="nav-item">
         <a class="nav-link" href="{{ route('alumni.index') }}">
@@ -25,23 +44,33 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{ route('user.index') }}">
             <i class="fas fa-fw fa-user"></i>
             <span>User</span></a>
     </li>
 
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Value List Base
+    </div>
+
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
             aria-controls="collapsePages">
             <i class="fas fa-fw fa-list"></i>
             <span>Value List</span>
         </a>
-        <div id="collapsePages" class="collapse show" aria-labelledby="headingPages"
+        <div id="collapsePages" class="collapse" aria-labelledby="headingPages"
             data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="404.html">404 Page</a>
-                <a class="collapse-item" href="blank.html">Blank Page</a>
+                <a class="collapse-item" href="{{ route('status-pernikahan.index') }}">Status Pernikahan</a>
+                <a class="collapse-item" href="blank.html">Jurusan</a>
+                <a class="collapse-item" href="blank.html">Alumni Angkatan</a>
+                <a class="collapse-item" href="blank.html">Posisi Saat Ini</a>
             </div>
         </div>
     </li>

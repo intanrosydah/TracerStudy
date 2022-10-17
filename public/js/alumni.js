@@ -64,6 +64,7 @@ $(function () {
                 name: "Alamat ",
             },
         ],
+        aaSorting: [[0, "desc"]],
     });
 
     $("#tambahAlumni").click(function () {
@@ -76,22 +77,86 @@ $(function () {
     // simpan data
     $("#btnSimpan").click(function (e) {
         e.preventDefault();
-        $(this).html("Simpan");
+
+        var data = $("#formAlumni").serialize();
 
         $.ajax({
-            data: $("#formAlumni").serialize(),
+            data: data,
             url: routeSimpan,
             type: "POST",
             dataType: "json",
             success: function (data) {
+                table.draw();
                 $("#formAlumni").trigger("reset");
                 $("#modalAlumni").modal("hide");
-                table.draw();
+
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Data berhasil disimpan",
+                    showConfirmButton: false,
+                    timer: 1600,
+                });
             },
             error: function (data) {
                 console.log("Error: " + data);
                 $("#btnSimpan").html("Simpan");
             },
+        });
+    });
+
+    // hapus data
+    $("body").on("click", ".hapusAlumni", function () {
+        var idAlumni = $(this).data("id");
+        Swal.fire({
+            title: "Apakah kamu yakin?",
+            text: "Anda tidak akan dapat mengembalikan data ini!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            confirmButtonText: "Ya, hapus",
+            cancelButtonText: "Batal",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: "DELETE",
+                    url: routeSimpan + "/" + idAlumni,
+                    success: function (data) {
+                        Swal.fire(
+                            "Terhapus!",
+                            "Data anda telah dihapus.",
+                            "success"
+                        );
+
+                        table.draw();
+                    },
+                    error: function (data) {
+                        console.log("Error: " + data);
+                    },
+                });
+            }
+        });
+    });
+
+    // edit data
+    $("body").on("click", ".editAlumni", function () {
+        var idAlumni = $(this).data("id");
+        $.get(routeIndex + "/" + idAlumni + "/edit", function (data) {
+            $("#modalHeading").html("Edit Data Alumni");
+            $("#modalAlumni").modal("show");
+            // data
+            $("#id_alumni").val(data.id);
+            $("#nama_lengkap").val(data.nama_lengkap);
+            $("#tanggal_lahir").val(data.tanggal_lahir);
+            $("#jenis_kelamin").val(data.jenis_kelamin);
+            $("#status_pernikahan").val(data.id_status_menikah);
+            $("#alumni_angkatan").val(data.id_alumni_angkatan);
+            $("#jurusan").val(data.id_jurusan);
+            $("#posisi_saat_ini").val(data.id_posisi_saat_ini);
+            $("#nama_instansi").val(data.nama_instansi);
+            $("#bidang_instansi").val(data.bidang_instansi);
+            $("#posisi_pekerjaan").val(data.posisi_pekerjaan);
+            $("#alamat_lengkap").val(data.alamat_lengkap);
         });
     });
 });

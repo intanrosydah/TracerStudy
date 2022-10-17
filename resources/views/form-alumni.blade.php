@@ -12,7 +12,7 @@
                 Silakan isi data alumni
               </div>
             <div class="card-body mx-3">
-                <form action="{{ route('form-alumni.store') }}" method="post">
+                <form id="formSubmitAlumni">
                     {{ csrf_field() }}
                     <div class="form-row">
                         <div class="col">
@@ -96,7 +96,7 @@
                     </div>
                     <div class="mt-5 text-right">
                         <button type="reset" class="btn btn-secondary mx-1">Reset</button>
-                        <button type="submit" class="btn btn-primary"><i class="fas fa-fw fa-check"></i> Submit</button>
+                        <button type="submit" class="btn btn-primary" id="btnSubmitData"><i class="fas fa-fw fa-check"></i> Submit</button>
                     </div>
                 </form>
             </div>
@@ -104,3 +104,11 @@
     </div>
 </div>
 @endsection
+
+@push('js')
+    <script>
+        var routeSimpan = '<?php echo route('form-alumni.store') ?>';
+    </script>
+
+    <script src="{{ asset('js/form-alumni.js') }}"></script>
+@endpush

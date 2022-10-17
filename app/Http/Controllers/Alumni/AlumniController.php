@@ -28,9 +28,9 @@ class AlumniController extends Controller
                     ->addIndexColumn()
                     ->addColumn('aksi', function($row) {
                         $button = '<a href="javascript:void(0)" data-toggle="tooltip" data-id="'. $row->id .'"
-                            data-original-title="Edit" class="edit btn btn-primary btn-sm editAlumni"><i class="fas fa-fw fa-pen"></i></a>';
+                            data-original-title="Edit" class="btn btn-success btn-sm editAlumni"><i class="fas fa-fw fa-pen"></i></a>';
                         $button .= '<a href="javascript:void(0)" data-toggle="tooltip" data-id="'. $row->id .'"
-                            data-original-title="Hapus" class="hapus btn btn-danger btn-sm hapusAlumni"><i class="fas fa-fw fa-trash-alt"></i></a>';
+                            data-original-title="Hapus" class="btn btn-danger btn-sm hapusAlumni ml-1"><i class="fas fa-fw fa-trash-alt"></i></a>';
 
                         return $button;
                     })
@@ -91,14 +91,14 @@ class AlumniController extends Controller
                 'alamat_lengkap' => $request->alamat_lengkap
             ];
 
-            $result = Alumni::updateOrCreate([
+            $alumni = Alumni::updateOrCreate([
                 'id' => $request->id_alumni
             ], $data);
 
             DB::commit();
             return response()->json([
                 'success' => 'Data berhasil disimpan',
-                'data' => $result
+                'data' => $alumni
             ]);
         } catch (\Throwable $th) {
             DB::rollback();
@@ -125,7 +125,13 @@ class AlumniController extends Controller
      */
     public function edit($id)
     {
-        //
+        try {
+            $alumni = Alumni::where('id', $id)->first();
+
+            return response()->json($alumni);
+        } catch (\Throwable $th) {
+            return $th->getMessage();
+        }
     }
 
     /**
@@ -148,6 +154,19 @@ class AlumniController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            DB::beginTransaction();
+
+            $alumni = Alumni::where('id', $id)->delete();
+
+            DB::commit();
+            return response()->json([
+                'message' => 'Data berhasil dihapus',
+                'data' => $alumni
+            ]);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return $th->getMessage();
+        }
     }
 }

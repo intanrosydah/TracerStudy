@@ -9,14 +9,18 @@ use App\Models\Jurusan;
 use App\Models\PosisiSaatIni;
 use App\Models\StatusPernikahan;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class FormAlumniController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        // if (Auth::user()->role == 'User') {
+        try {
             $statusPernikahan = StatusPernikahan::all();
             $alumniAngkatan = AlumniAngkatan::all();
             $jurusan = Jurusan::all();
@@ -28,13 +32,31 @@ class FormAlumniController extends Controller
                 'jurusan' => $jurusan,
                 'posisi_saat_ini' => $posisSaatIni,
             ]);
-        // }
+        } catch (\Throwable $th) {
+            return $th->getMessage();
+        }
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
-        DB::beginTransaction();
         try {
+            DB::beginTransaction();
             $data = [
                 'nama_lengkap' => $request->nama_lengkap,
                 'tanggal_lahir' => $request->tanggal_lahir,
@@ -49,14 +71,62 @@ class FormAlumniController extends Controller
                 'alamat_lengkap' => $request->alamat_lengkap,
             ];
 
-            $result = Alumni::create($data);
+            $alumni = Alumni::create($data);
 
             DB::commit();
+            return response()->json([
+                'success' => 'Data berhasil disimpan',
+                'data' => $alumni
+            ]);
 
-            return redirect()->route('form-alumni');
         } catch (\Throwable $th) {
             DB::rollBack();
             return $th->getMessage();
         }
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
     }
 }

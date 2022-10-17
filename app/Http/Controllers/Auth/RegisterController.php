@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class VLPosisiSaatIniController extends Controller
+class RegisterController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,7 @@ class VLPosisiSaatIniController extends Controller
      */
     public function index()
     {
-        //
+        return view('auth.register');
     }
 
     /**

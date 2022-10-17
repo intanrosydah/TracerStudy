@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\StatusPernikahan;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use Yajra\DataTables\Facades\DataTables;
 
-class VLStatusPernikahanController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,15 +19,15 @@ class VLStatusPernikahanController extends Controller
     public function index(Request $request)
     {
         try {
-            $data = StatusPernikahan::get();
+            $data = User::get();
             if ($request->ajax()) {
                 $allData = DataTables::of($data)
                     ->addIndexColumn()
                     ->addColumn('aksi', function($row) {
                         $button = '<a href="javascript:void(0)" data-toggle="tooltip" data-id="'. $row->id .'"
-                            data-original-title="Edit" class="btn btn-success btn-sm editStatusPernikahan"><i class="fas fa-fw fa-pen"></i></a>';
+                            data-original-title="Edit" class="btn btn-success btn-sm editUser"><i class="fas fa-fw fa-pen"></i></a>';
                         $button .= '<a href="javascript:void(0)" data-toggle="tooltip" data-id="'. $row->id .'"
-                            data-original-title="Hapus" class="btn btn-danger btn-sm hapusStatusPernikahan ml-1"><i class="fas fa-fw fa-trash-alt"></i></a>';
+                            data-original-title="Hapus" class="btn btn-danger btn-sm hapusUser ml-1"><i class="fas fa-fw fa-trash-alt"></i></a>';
 
                         return $button;
                     })
@@ -35,7 +37,7 @@ class VLStatusPernikahanController extends Controller
                 return $allData;
             }
 
-            return view('status-pernikahan', [
+            return view('user', [
                 'data' => $data,
             ]);
         } catch (\Throwable $th) {
@@ -64,17 +66,37 @@ class VLStatusPernikahanController extends Controller
         try {
             DB::beginTransaction();
             $data = [
-                'status_pernikahan' => $request->status_pernikahan,
+                'name' => $request->nama_lengkap,
+                'email' => $request->email,
+                'role' => $request->role,
             ];
 
-            $statusPernikahan = StatusPernikahan::updateOrCreate([
-                'id' => $request->id_status_pernikahan
+            // cek jika user ada
+            $userExists = User::where('id', $request->id_user)->first();
+
+            // jika user ada (true)
+            if ($userExists) {
+                // cek jika mengisikan password
+                if (isset($request->password)) {
+                    // password baru sesuai request
+                    $data['password'] = Hash::make($request->password);
+                } else {
+                    // password lama sesuai database
+                    $data['password'] = $userExists->password;
+                }
+            } else {
+                // create password baru jika user tidak ada
+                $data['password'] = Hash::make($request->password);
+            }
+
+            $user = User::updateOrCreate([
+                'id' => $request->id_user
             ], $data);
 
             DB::commit();
             return response()->json([
                 'success' => 'Data berhasil disimpan',
-                'data' => $statusPernikahan
+                'data' => $user
             ]);
         } catch (\Throwable $th) {
             DB::rollback();
@@ -102,9 +124,9 @@ class VLStatusPernikahanController extends Controller
     public function edit($id)
     {
         try {
-            $statusPernikahan = StatusPernikahan::where('id', $id)->first();
+            $user = User::where('id', $id)->first();
 
-            return response()->json($statusPernikahan);
+            return response()->json($user);
         } catch (\Throwable $th) {
             return $th->getMessage();
         }
@@ -133,12 +155,12 @@ class VLStatusPernikahanController extends Controller
         try {
             DB::beginTransaction();
 
-            $statusPernikahan = StatusPernikahan::where('id', $id)->delete();
+            $user = User::where('id', $id)->delete();
 
             DB::commit();
             return response()->json([
                 'message' => 'Data berhasil dihapus',
-                'data' => $statusPernikahan
+                'data' => $user
             ]);
         } catch (\Throwable $th) {
             DB::rollBack();

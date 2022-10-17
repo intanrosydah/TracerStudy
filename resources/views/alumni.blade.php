@@ -16,19 +16,19 @@
                 <table class="table table-hover" id="tableAlumni">
                     <thead>
                       <tr>
-                        <th scope="col">No.</th>
-                        <th scope="col">Aksi</th>
-                        <th scope="col">Nama Lengkap</th>
-                        <th scope="col">Tanggal Lahir</th>
-                        <th scope="col">Jenis Kelamin</th>
-                        <th scope="col">Status Menikah</th>
-                        <th scope="col">Alumni Angkatan</th>
-                        <th scope="col">Jurusan</th>
-                        <th scope="col">Posisi Saat Ini</th>
-                        <th scope="col">Nama Instansi</th>
-                        <th scope="col">Bidang Instansi</th>
-                        <th scope="col">Posisi Pekerjaan</th>
-                        <th scope="col">Alamat Lengkap</th>
+                        <th scope="col" width="10">No.</th>
+                        <th scope="col" width="70">Aksi</th>
+                        <th scope="col" width="190">Nama Lengkap</th>
+                        <th scope="col" width="150">Tanggal Lahir</th>
+                        <th scope="col" width="150">Jenis Kelamin</th>
+                        <th scope="col" width="150">Status Menikah</th>
+                        <th scope="col" width="150">Alumni Angkatan</th>
+                        <th scope="col" width="150">Jurusan</th>
+                        <th scope="col" width="150">Posisi Saat Ini</th>
+                        <th scope="col" width="150">Nama Instansi</th>
+                        <th scope="col" width="150">Bidang Instansi</th>
+                        <th scope="col" width="150">Posisi Pekerjaan</th>
+                        <th scope="col" width="270">Alamat Lengkap</th>
                       </tr>
                     </thead>
                   </table>
@@ -56,11 +56,11 @@
                 <div class="form-row">
                     <div class="col">
                         <label for="nama_lengkap">Nama Lengkap</label>
-                        <input type="text" class="form-control" name="nama_lengkap" placeholder="Cth : Bill gates">
+                        <input type="text" class="form-control" name="nama_lengkap" id="nama_lengkap" placeholder="Cth : Bill gates">
                     </div>
                     <div class="col">
                         <label for="tanggal_lahir">Tanggal Lahir</label>
-                        <input type="date" class="form-control" name="tanggal_lahir">
+                        <input type="date" class="form-control" name="tanggal_lahir" id="tanggal_lahir">
                     </div>
                 </div>
                 <div class="form-row mt-4">
@@ -114,28 +114,28 @@
                     </div>
                     <div class="col">
                         <label for="nama_instansi">Nama Instansi (Tempat Kerja/Usaha/Universitas)</label>
-                        <input type="text" class="form-control" name="nama_instansi" placeholder="Cth : PT xxx">
+                        <input type="text" class="form-control" name="nama_instansi" id="nama_instansi" placeholder="Cth : PT xxx">
                     </div>
                 </div>
                 <div class="form-row mt-4">
                     <div class="col">
                         <label for="bidang_instansi">Bidang Instansi/Industri</label> <span class="float-right">(Optoinal)</span>
-                        <input type="text" class="form-control" name="bidang_instansi" placeholder="Cth : IT">
+                        <input type="text" class="form-control" name="bidang_instansi" id="bidang_instansi" placeholder="Cth : IT">
                     </div>
                     <div class="col">
                         <label for="posisi_pekerjaan">Posisi Pekerjaan</label> <span class="float-right">(Optional)</span>
-                        <input type="text" class="form-control" name="posisi_pekerjaan" placeholder="Cth : Programmer">
+                        <input type="text" class="form-control" name="posisi_pekerjaan" id="posisi_pekerjaan" placeholder="Cth : Programmer">
                     </div>
                 </div>
                 <div class="form-row mt-4">
                     <div class="col">
                         <label for="alamat_lengkap">Alamat Lengkap</label>
-                        <textarea name="alamat_lengkap" style="min-height: 100px" rows="5" type="text" class="form-control"></textarea>
+                        <textarea name="alamat_lengkap" id="alamat_lengkap" style="min-height: 100px" rows="5" type="text" class="form-control"></textarea>
                     </div>
                 </div>
                 <div class="mt-4 text-right">
                     <button type="button" class="btn btn-secondary mx-1" data-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-primary" id="btnSimpan" value="Create"><i class="fas fa-fw fa-check"></i> Simpan</button>
+                    <button type="submit" class="btn btn-primary" id="btnSimpan"><i class="fas fa-fw fa-check"></i> Simpan</button>
                 </div>
             </form>
         </div>
