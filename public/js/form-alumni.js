@@ -24,7 +24,7 @@ $(function () {
                     icon: "success",
                     title: "Data berhasil disubmit",
                     showConfirmButton: false,
-                    timer: 1600,
+                    timer: 1500,
                 });
             },
             error: function (data) {

@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PosisiSaatIni;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Yajra\DataTables\Facades\DataTables;
 
 class VLPosisiSaatIniController extends Controller
 {
@@ -11,9 +14,33 @@ class VLPosisiSaatIniController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        try {
+            $data = PosisiSaatIni::get();
+            if ($request->ajax()) {
+                $allData = DataTables::of($data)
+                    ->addIndexColumn()
+                    ->addColumn('aksi', function($row) {
+                        $button = '<a href="javascript:void(0)" data-toggle="tooltip" data-id="'. $row->id .'"
+                            data-original-title="Edit" class="btn btn-success btn-sm editPosisiSaatIni"><i class="fas fa-fw fa-pen"></i></a>';
+                        $button .= '<a href="javascript:void(0)" data-toggle="tooltip" data-id="'. $row->id .'"
+                            data-original-title="Hapus" class="btn btn-danger btn-sm hapusPosisiSaatIni ml-1"><i class="fas fa-fw fa-trash-alt"></i></a>';
+
+                        return $button;
+                    })
+                    ->rawColumns(['aksi'])
+                    ->make(true);
+
+                return $allData;
+            }
+
+            return view('posisi-saat-ini', [
+                'data' => $data,
+            ]);
+        } catch (\Throwable $th) {
+            return $th->getMessage();
+        }
     }
 
     /**
@@ -34,7 +61,25 @@ class VLPosisiSaatIniController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            DB::beginTransaction();
+            $data = [
+                'posisi' => $request->posisi_saat_ini,
+            ];
+
+            $posisiSaatIni = PosisiSaatIni::updateOrCreate([
+                'id' => $request->id_posisi_saat_ini
+            ], $data);
+
+            DB::commit();
+            return response()->json([
+                'success' => 'Data berhasil disimpan',
+                'data' => $posisiSaatIni
+            ]);
+        } catch (\Throwable $th) {
+            DB::rollback();
+            return $th->getMessage();
+        }
     }
 
     /**
@@ -56,7 +101,13 @@ class VLPosisiSaatIniController extends Controller
      */
     public function edit($id)
     {
-        //
+        try {
+            $posisiSaatIni = PosisiSaatIni::where('id', $id)->first();
+
+            return response()->json($posisiSaatIni);
+        } catch (\Throwable $th) {
+            return $th->getMessage();
+        }
     }
 
     /**
@@ -79,6 +130,19 @@ class VLPosisiSaatIniController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            DB::beginTransaction();
+
+            $posisiSaatIni = PosisiSaatIni::where('id', $id)->delete();
+
+            DB::commit();
+            return response()->json([
+                'message' => 'Data berhasil dihapus',
+                'data' => $posisiSaatIni
+            ]);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return $th->getMessage();
+        }
     }
 }

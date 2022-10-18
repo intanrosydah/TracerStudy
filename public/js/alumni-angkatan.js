@@ -5,7 +5,7 @@ $(function () {
             "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
         },
     });
-    var table = $("#tableStatusPernikahan").DataTable({
+    var table = $("#tableAlumniAngkatan").DataTable({
         // scrollX: true,
         // serverSide: true,
         processing: true,
@@ -23,24 +23,24 @@ $(function () {
                 searchable: false,
             },
             {
-                data: "status_pernikahan",
-                name: "Status Pernikahan",
+                data: "tahun_angkatan",
+                name: "Tahun Angkatan",
             },
         ],
     });
 
-    $("#tambahStatusPernikahan").click(function () {
-        $("#id_status_pernikahan").val();
-        $("#formStatusPernikahan").trigger("reset");
-        $("#modalHeading").html("Tambah Data Status Pernikahan");
-        $("#modalStatusPernikahan").modal("show");
+    $("#tambahAlumniAngkatan").click(function () {
+        $("#id_alumni_angkatan").val();
+        $("#formAlumniAngkatan").trigger("reset");
+        $("#modalHeading").html("Tambah Data Alumni Angkatan");
+        $("#modalAlumniAngkatan").modal("show");
     });
 
     // simpan data
     $("#btnSimpan").click(function (e) {
         e.preventDefault();
 
-        var data = $("#formStatusPernikahan").serialize();
+        var data = $("#formAlumniAngkatan").serialize();
 
         $.ajax({
             data: data,
@@ -48,8 +48,8 @@ $(function () {
             type: "POST",
             dataType: "json",
             success: function (data) {
-                $("#formStatusPernikahan").trigger("reset");
-                $("#modalStatusPernikahan").modal("hide");
+                $("#formAlumniAngkatan").trigger("reset");
+                $("#modalAlumniAngkatan").modal("hide");
                 table.ajax.reload();
 
                 Swal.fire({
@@ -57,7 +57,7 @@ $(function () {
                     icon: "success",
                     title: "Data berhasil disimpan",
                     showConfirmButton: false,
-                    timer: 1600,
+                    timer: 1500,
                 });
             },
             error: function (data) {
@@ -68,8 +68,8 @@ $(function () {
     });
 
     // hapus data
-    $("body").on("click", ".hapusStatusPernikahan", function () {
-        var idStatusPernikahan = $(this).data("id");
+    $("body").on("click", ".hapusAlumniAngkatan", function () {
+        var idAlumniAngkatan = $(this).data("id");
         Swal.fire({
             title: "Apakah kamu yakin?",
             text: "Anda tidak akan dapat mengembalikan data ini!",
@@ -82,7 +82,7 @@ $(function () {
             if (result.isConfirmed) {
                 $.ajax({
                     type: "DELETE",
-                    url: routeSimpan + "/" + idStatusPernikahan,
+                    url: routeSimpan + "/" + idAlumniAngkatan,
                     success: function (data) {
                         table.ajax.reload();
 
@@ -101,14 +101,14 @@ $(function () {
     });
 
     // edit data
-    $("body").on("click", ".editStatusPernikahan", function () {
-        var idStatusPernikahan = $(this).data("id");
-        $.get(routeIndex + "/" + idStatusPernikahan + "/edit", function (data) {
-            $("#modalHeading").html("Edit Data Status Pernikahan");
-            $("#modalStatusPernikahan").modal("show");
+    $("body").on("click", ".editAlumniAngkatan", function () {
+        var idAlumniAngkatan = $(this).data("id");
+        $.get(routeIndex + "/" + idAlumniAngkatan + "/edit", function (data) {
+            $("#modalHeading").html("Edit Data Alumni Angkatan");
+            $("#modalAlumniAngkatan").modal("show");
             // data
-            $("#id_status_pernikahan").val(data.id);
-            $("#status_pernikahan").val(data.status_pernikahan);
+            $("#id_alumni_angkatan").val(data.id);
+            $("#alumni_angkatan").val(data.tahun_angkatan);
         });
     });
 });

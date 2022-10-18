@@ -7,17 +7,19 @@ $(function () {
     });
     var table = $("#tableUser").DataTable({
         // scrollX: true,
-        serverSide: true,
+        // serverSide: true,
         processing: true,
         ajax: routeIndex,
         columns: [
             {
                 data: "DT_RowIndex",
                 name: "DT_RowIndex",
+                searchable: false,
             },
             {
                 data: "aksi",
                 name: "Aksi",
+                searchable: false,
             },
             {
                 data: "name",
@@ -32,7 +34,6 @@ $(function () {
                 name: "Role",
             },
         ],
-        aaSorting: [[0, "desc"]],
     });
 
     $("#tambahUser").click(function () {
@@ -54,16 +55,16 @@ $(function () {
             type: "POST",
             dataType: "json",
             success: function (data) {
-                table.draw();
                 $("#formUser").trigger("reset");
                 $("#modalUser").modal("hide");
+                table.ajax.reload();
 
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
                     title: "Data berhasil disimpan",
                     showConfirmButton: false,
-                    timer: 1600,
+                    timer: 1500,
                 });
             },
             error: function (data) {
@@ -90,7 +91,8 @@ $(function () {
                     type: "DELETE",
                     url: routeSimpan + "/" + idUser,
                     success: function (data) {
-                        table.draw();
+                        table.ajax.reload();
+
                         Swal.fire(
                             "Terhapus!",
                             "Data anda telah dihapus.",

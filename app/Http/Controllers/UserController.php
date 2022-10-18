@@ -85,7 +85,7 @@ class UserController extends Controller
                     $data['password'] = $userExists->password;
                 }
             } else {
-                // create password baru jika user tidak ada
+                // create password baru jika cek user tidak ada
                 $data['password'] = Hash::make($request->password);
             }
 

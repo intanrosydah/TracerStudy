@@ -5,7 +5,7 @@ $(function () {
             "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
         },
     });
-    var table = $("#tableStatusPernikahan").DataTable({
+    var table = $("#tablePosisiSaatIni").DataTable({
         // scrollX: true,
         // serverSide: true,
         processing: true,
@@ -23,24 +23,24 @@ $(function () {
                 searchable: false,
             },
             {
-                data: "status_pernikahan",
-                name: "Status Pernikahan",
+                data: "posisi",
+                name: "Posisi",
             },
         ],
     });
 
-    $("#tambahStatusPernikahan").click(function () {
-        $("#id_status_pernikahan").val();
-        $("#formStatusPernikahan").trigger("reset");
-        $("#modalHeading").html("Tambah Data Status Pernikahan");
-        $("#modalStatusPernikahan").modal("show");
+    $("#tambahPosisiSaatIni").click(function () {
+        $("#id_posisi_saat_ini").val();
+        $("#formPosisiSaatIni").trigger("reset");
+        $("#modalHeading").html("Tambah Data Posisi Saat Ini");
+        $("#modalPosisiSaatIni").modal("show");
     });
 
     // simpan data
     $("#btnSimpan").click(function (e) {
         e.preventDefault();
 
-        var data = $("#formStatusPernikahan").serialize();
+        var data = $("#formPosisiSaatIni").serialize();
 
         $.ajax({
             data: data,
@@ -48,8 +48,8 @@ $(function () {
             type: "POST",
             dataType: "json",
             success: function (data) {
-                $("#formStatusPernikahan").trigger("reset");
-                $("#modalStatusPernikahan").modal("hide");
+                $("#formPosisiSaatIni").trigger("reset");
+                $("#modalPosisiSaatIni").modal("hide");
                 table.ajax.reload();
 
                 Swal.fire({
@@ -57,7 +57,7 @@ $(function () {
                     icon: "success",
                     title: "Data berhasil disimpan",
                     showConfirmButton: false,
-                    timer: 1600,
+                    timer: 1500,
                 });
             },
             error: function (data) {
@@ -68,8 +68,8 @@ $(function () {
     });
 
     // hapus data
-    $("body").on("click", ".hapusStatusPernikahan", function () {
-        var idStatusPernikahan = $(this).data("id");
+    $("body").on("click", ".hapusPosisiSaatIni", function () {
+        var idPosisiSaatIni = $(this).data("id");
         Swal.fire({
             title: "Apakah kamu yakin?",
             text: "Anda tidak akan dapat mengembalikan data ini!",
@@ -82,7 +82,7 @@ $(function () {
             if (result.isConfirmed) {
                 $.ajax({
                     type: "DELETE",
-                    url: routeSimpan + "/" + idStatusPernikahan,
+                    url: routeSimpan + "/" + idPosisiSaatIni,
                     success: function (data) {
                         table.ajax.reload();
 
@@ -101,14 +101,14 @@ $(function () {
     });
 
     // edit data
-    $("body").on("click", ".editStatusPernikahan", function () {
-        var idStatusPernikahan = $(this).data("id");
-        $.get(routeIndex + "/" + idStatusPernikahan + "/edit", function (data) {
-            $("#modalHeading").html("Edit Data Status Pernikahan");
-            $("#modalStatusPernikahan").modal("show");
+    $("body").on("click", ".editPosisiSaatIni", function () {
+        var idPosisiSaatIni = $(this).data("id");
+        $.get(routeIndex + "/" + idPosisiSaatIni + "/edit", function (data) {
+            $("#modalHeading").html("Edit Data Posisi Saat Ini");
+            $("#modalPosisiSaatIni").modal("show");
             // data
-            $("#id_status_pernikahan").val(data.id);
-            $("#status_pernikahan").val(data.status_pernikahan);
+            $("#id_posisi_saat_ini").val(data.id);
+            $("#posisi_saat_ini").val(data.posisi);
         });
     });
 });
