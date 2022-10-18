@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('title')
-<h2 class="h3 mb-4 text-gray-800">Dashboard</h2>
+<h2 class="h4 mb-4 text-gray-800">Dashboard</h2>
 @endsection
 
 @section('content')
@@ -12,11 +12,11 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                            Earnings (Monthly)</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                            Teknik Komputer Jaringan</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $tkj }} Orang</div>
                     </div>
                     <div class="col-auto">
-                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                        <i class="fas fa-code fa-2x text-gray-300"></i>
                     </div>
                 </div>
             </div>
@@ -30,11 +30,11 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                            Earnings (Annual)</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                            Multimedia</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $multimedia }} Orang</div>
                     </div>
                     <div class="col-auto">
-                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                        <i class="fas fa-video fa-2x text-gray-300"></i>
                     </div>
                 </div>
             </div>
@@ -47,23 +47,16 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
-                        </div>
+                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                            Rekaya Perangkat Lunak</div>
                         <div class="row no-gutters align-items-center">
                             <div class="col-auto">
-                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-                            </div>
-                            <div class="col">
-                                <div class="progress progress-sm mr-2">
-                                    <div class="progress-bar bg-info" role="progressbar"
-                                        style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                        aria-valuemax="100"></div>
-                                </div>
+                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $rpl }} Orang</div>
                             </div>
                         </div>
                     </div>
                     <div class="col-auto">
-                        <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                        <i class="fas fa-laptop fa-2x text-gray-300"></i>
                     </div>
                 </div>
             </div>
@@ -77,15 +70,53 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                            Pending Requests</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                            Manajemen Bisnis</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $bisnis }} Orang</div>
                     </div>
                     <div class="col-auto">
-                        <i class="fas fa-comments fa-2x text-gray-300"></i>
+                        <i class="fas fa-business-time fa-2x text-gray-300"></i>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<div class="row">
+    <div class="col">
+        <div class="card o-hidden border-0 shadow-lg">
+            <div class="card-header">
+                Data Alumni
+             </div>
+             <div class="card-body">
+                <table class="table table-hover" id="tableDashboardAlumni">
+                    <thead>
+                      <tr>
+                        <th scope="col" width="10">No.</th>
+                        <th scope="col" width="190">Nama Lengkap</th>
+                        <th scope="col" width="150">Tanggal Lahir</th>
+                        <th scope="col" width="150">Jenis Kelamin</th>
+                        <th scope="col" width="150">Status Menikah</th>
+                        <th scope="col" width="150">Alumni Angkatan</th>
+                        <th scope="col" width="150">Jurusan</th>
+                        <th scope="col" width="150">Posisi Saat Ini</th>
+                        <th scope="col" width="150">Nama Instansi</th>
+                        <th scope="col" width="150">Bidang Instansi</th>
+                        <th scope="col" width="150">Posisi Pekerjaan</th>
+                        <th scope="col" width="270">Alamat Lengkap</th>
+                      </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
+
+@push('js')
+<script>
+    var routeIndex = '<?php echo route('dashboard.index') ?>';
+</script>
+
+<script src="{{ asset('js/dashboard.js') }}"></script>
+@endpush
