@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
 
 class RegisterController extends Controller
 {
@@ -35,7 +39,25 @@ class RegisterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            DB::beginTransaction();
+
+            $data = [
+                'name' => $request->nama_lengkap,
+                'email' => $request->email,
+                'role' => 'user', // default role for user
+                'password' => Hash::make($request->password),
+            ];
+
+            User::create($data);
+
+            DB::commit();
+            return redirect()->route('login')->with('success', 'Akun berhasil dibuat! Silakan login.');
+        } catch (\Throwable $th) {
+            dd($th);
+            DB::rollback();
+            return $th->getMessage();
+        }
     }
 
     /**

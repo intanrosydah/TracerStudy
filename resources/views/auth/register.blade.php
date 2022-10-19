@@ -12,28 +12,29 @@
                             <h1 class="h4 text-gray-900 mb-4">Selamat datang, di aplikasi tracer study!</h1>
                             <h1 class="h5 text-gray-700 mb-4">Daftar Akun</h1>
                         </div>
-                        <form class="user">
+                        <form class="user" action="{{ route('register.store') }}" method="post" enctype="multipart/form-data">
+                            {{ csrf_field() }}
                             <div class="form-group">
                                 <input type="nama_lengkap" class="form-control form-control-user" name="nama_lengkap" id="nama_lengkap"
-                                    placeholder="Nama Lengkap">
+                                    placeholder="Nama Lengkap" required>
                             </div>
                             <div class="form-group">
                                 <input type="email" class="form-control form-control-user" name="email" id="email"
-                                    placeholder="Alamat Email">
+                                    placeholder="Alamat Email" required>
                             </div>
                             <div class="form-group row">
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <input type="password" class="form-control form-control-user"
-                                        id="exampleInputPassword" placeholder="Password">
+                                <div class="col-sm-12 mb-3 mb-sm-0">
+                                    <input type="password" name="password" id="password" class="form-control form-control-user"
+                                        id="password" placeholder="Password" required minlength="8">
                                 </div>
-                                <div class="col-sm-6">
+                                {{-- <div class="col-sm-6">
                                     <input type="password" class="form-control form-control-user"
                                         id="exampleRepeatPassword" placeholder="Ulangi Password">
-                                </div>
+                                </div> --}}
                             </div>
-                            <a href="{{ url('/') }}" class="btn btn-primary btn-user btn-block">
+                            <button type="submit" class="btn btn-primary btn-user btn-block">
                                 Daftar
-                            </a>
+                            </button>
                         </form>
                         <hr>
                         {{-- <div class="text-center">

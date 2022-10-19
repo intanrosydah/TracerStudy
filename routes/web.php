@@ -24,8 +24,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 // authenticate
+Route::resource('register', RegisterController::class);
 Route::get('/', [LoginController::class, 'index'])->name('login');
-Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/authenticate', [LoginController::class, 'authenticate'])->name('authenticate');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 

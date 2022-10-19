@@ -23,12 +23,10 @@ class LoginController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->route('dashboard');
+            return redirect()->route('dashboard.index');
         }
 
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ])->onlyInput('email');
+        return redirect()->route('login')->with('error', 'Data tidak ada disistem kami! mohon cek kembali.');
     }
 
     public function logout(Request $request)
