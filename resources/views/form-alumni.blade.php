@@ -80,7 +80,7 @@
                     </div>
                     <div class="form-row mt-4">
                         <div class="col">
-                            <label for="bidang_instansi">Bidang Instansi/Industri</label> <span class="float-right">(Optoinal)</span>
+                            <label for="bidang_instansi">Bidang Instansi/Industri</label> <span class="float-right">(Optional)</span>
                             <input type="text" class="form-control" name="bidang_instansi" placeholder="Cth : IT">
                         </div>
                         <div class="col">

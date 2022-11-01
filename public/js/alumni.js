@@ -34,19 +34,19 @@ $(function () {
                 name: "Jenis kelamin",
             },
             {
-                data: "id_status_menikah",
+                data: "status_pernikahan.status_pernikahan",
                 name: "Status Pernikahan",
             },
             {
-                data: "id_alumni_angkatan",
+                data: "alumni_angkatan.tahun_angkatan",
                 name: "Alumni Angkatan",
             },
             {
-                data: "id_jurusan",
+                data: "jurusan.jurusan",
                 name: "Jurusan",
             },
             {
-                data: "id_posisi_saat_ini",
+                data: "posisi_saat_ini.posisi",
                 name: "Posisi Saat Ini",
             },
             {

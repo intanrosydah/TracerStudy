@@ -54,7 +54,6 @@ class RegisterController extends Controller
             DB::commit();
             return redirect()->route('login')->with('success', 'Akun berhasil dibuat! Silakan login.');
         } catch (\Throwable $th) {
-            dd($th);
             DB::rollback();
             return $th->getMessage();
         }

@@ -22,7 +22,14 @@ class AlumniController extends Controller
     public function index(Request $request)
     {
         try {
-            $data = Alumni::get();
+            $data = Alumni::with([
+                'statusPernikahan',
+                'alumniAngkatan',
+                'jurusan',
+                'posisiSaatIni'
+            ])
+            ->get();
+
             if ($request->ajax()) {
                 $allData = DataTables::of($data)
                     ->addIndexColumn()

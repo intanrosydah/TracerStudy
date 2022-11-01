@@ -5,6 +5,7 @@ use App\Http\Controllers\Alumni\AlumniController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VLAlumniAngkatanController;
 use App\Http\Controllers\VLJurusanController;
@@ -48,6 +49,9 @@ Route::middleware('auth')->group(function() {
     Route::resource('alumni-angkatan', VLAlumniAngkatanController::class);
     Route::resource('posisi-saat-ini', VLPosisiSaatIniController::class);
     // END OF VALUE LIST BASE
+
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+    Route::post('/update-password', [ProfileController::class, 'updatePassword'])->name('update-password');
 });
 
 
