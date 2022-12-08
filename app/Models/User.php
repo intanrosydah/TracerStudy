@@ -12,17 +12,29 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    public function alumniAngkatan()
+    {
+        return $this->belongsTo(AlumniAngkatan::class, 'id_alumni_angkatan', 'id');
+    }
+
+    public function jurusan()
+    {
+        return $this->belongsTo(Jurusan::class, 'id_jurusan', 'id');
+    }
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'role',
-        'email',
-        'password',
-    ];
+    // protected $fillable = [
+    //     'name',
+    //     'role',
+    //     'email',
+    //     'password',
+    // ];
+
+    protected $guarded = ['id'];
 
     protected $primaryKey = 'id';
 
@@ -44,4 +56,5 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
 }

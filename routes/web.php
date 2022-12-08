@@ -9,6 +9,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VLAlumniAngkatanController;
 use App\Http\Controllers\VLJurusanController;
+use App\Http\Controllers\VLKelasController;
 use App\Http\Controllers\VLPosisiSaatIniController;
 use App\Http\Controllers\VLStatusPernikahanController;
 use Illuminate\Support\Facades\Route;
@@ -48,6 +49,7 @@ Route::middleware('auth')->group(function() {
     Route::resource('jurusan', VLJurusanController::class);
     Route::resource('alumni-angkatan', VLAlumniAngkatanController::class);
     Route::resource('posisi-saat-ini', VLPosisiSaatIniController::class);
+    Route::resource('kelas', VLKelasController::class);
     // END OF VALUE LIST BASE
 
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');

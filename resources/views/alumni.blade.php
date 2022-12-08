@@ -55,12 +55,37 @@
                 <input type="hidden" name="id_alumni" id="id_alumni">
                 <div class="form-row">
                     <div class="col">
+                        <label for="nis">NIS</label>
+                        <input type="text" class="form-control" name="nis" id="nis" maxlength="4" placeholder="Cth : 1234">
+                    </div>
+                    <div class="col">
                         <label for="nama_lengkap">Nama Lengkap</label>
                         <input type="text" class="form-control" name="nama_lengkap" id="nama_lengkap" placeholder="Cth : Bill gates">
+                    </div>
+                </div>
+                <div class="form-row mt-4">
+                    <div class="col">
+                        <label for="tempat_lahir">Tempat Lahir</label>
+                        <input type="text" class="form-control" name="tempat_lahir" id="tempat_lahir" placeholder="Cth : Sidoarjo">
                     </div>
                     <div class="col">
                         <label for="tanggal_lahir">Tanggal Lahir</label>
                         <input type="date" class="form-control" name="tanggal_lahir" id="tanggal_lahir">
+                    </div>
+                </div>
+                <div class="form-row mt-4">
+                    <div class="col">
+                        <label for="kelas">Kelas</label>
+                        <select class="form-control" name="kelas" id="kelas">
+                            <option value="">-- Piih Kelas --</option>
+                            @foreach ($kelas as $item)
+                                <option value="{{ $item->id }}">{{ $item->kelas }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label for="wali_kelas">Wali Kelas</label>
+                        <input type="text" class="form-control" name="wali_kelas" id="wali_kelas" placeholder="Cth : Bu Mega">
                     </div>
                 </div>
                 <div class="form-row mt-4">
@@ -80,6 +105,10 @@
                                 <option value="{{ $item->id }}">{{ $item->status_pernikahan }}</option>
                             @endforeach
                         </select>
+                    </div>
+                    <div class="col">
+                        <label for="tahun_menikah">Tahun Menikah</label> <span class="float-right text-danger">(Optional)</span>
+                        <input type="text" class="form-control" name="tahun_menikah" id="tahun_menikah" placeholder="Cth : 2020">
                     </div>
                 </div>
                 <div class="form-row mt-4">
@@ -114,16 +143,26 @@
                     </div>
                     <div class="col">
                         <label for="nama_instansi">Nama Instansi (Tempat Kerja/Usaha/Universitas)</label>
-                        <input type="text" class="form-control" name="nama_instansi" id="nama_instansi" placeholder="Cth : PT xxx">
+                        <input type="text" class="form-control" name="nama_instansi" id="nama_instansi" placeholder="Cth : PT xxx / Univ. ITS">
                     </div>
                 </div>
                 <div class="form-row mt-4">
                     <div class="col">
-                        <label for="bidang_instansi">Bidang Instansi/Industri</label> <span class="float-right">(Optoinal)</span>
+                        <label for="jurusan_kuliah">Jurusan Kuliah</label> <span class="float-right text-danger">(Optional)</span>
+                        <input type="text" class="form-control" name="jurusan_kuliah" id="jurusan_kuliah" placeholder="Cth : Teknik Informatika">
+                    </div>
+                    <div class="col">
+                        <label for="nomor_telepon">Nomor Telepon</label>
+                        <input type="text" class="form-control" name="nomor_telepon" id="nomor_telepon" maxlength="13" placeholder="Cth : 087654321234">
+                    </div>
+                </div>
+                <div class="form-row mt-4">
+                    <div class="col">
+                        <label for="bidang_instansi">Bidang Instansi/Industri</label> <span class="float-right text-danger">(Optional)</span>
                         <input type="text" class="form-control" name="bidang_instansi" id="bidang_instansi" placeholder="Cth : IT">
                     </div>
                     <div class="col">
-                        <label for="posisi_pekerjaan">Posisi Pekerjaan</label> <span class="float-right">(Optional)</span>
+                        <label for="posisi_pekerjaan">Posisi Pekerjaan</label> <span class="float-right text-danger">(Optional)</span>
                         <input type="text" class="form-control" name="posisi_pekerjaan" id="posisi_pekerjaan" placeholder="Cth : Programmer">
                     </div>
                 </div>

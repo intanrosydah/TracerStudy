@@ -1,19 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Alumni;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\Alumni;
-use App\Models\AlumniAngkatan;
-use App\Models\Jurusan;
 use App\Models\Kelas;
-use App\Models\PosisiSaatIni;
-use App\Models\StatusPernikahan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
-class AlumniController extends Controller
+class VLKelasController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,22 +17,15 @@ class AlumniController extends Controller
     public function index(Request $request)
     {
         try {
-            $data = Alumni::with([
-                'statusPernikahan',
-                'alumniAngkatan',
-                'jurusan',
-                'posisiSaatIni'
-            ])
-            ->get();
-
+            $data = Kelas::get();
             if ($request->ajax()) {
                 $allData = DataTables::of($data)
                     ->addIndexColumn()
                     ->addColumn('aksi', function($row) {
                         $button = '<a href="javascript:void(0)" data-toggle="tooltip" data-id="'. $row->id .'"
-                            data-original-title="Edit" class="btn btn-success btn-sm editAlumni"><i class="fas fa-fw fa-pen"></i></a>';
+                            data-original-title="Edit" class="btn btn-success btn-sm editKelas"><i class="fas fa-fw fa-pen"></i></a>';
                         $button .= '<a href="javascript:void(0)" data-toggle="tooltip" data-id="'. $row->id .'"
-                            data-original-title="Hapus" class="btn btn-danger btn-sm hapusAlumni ml-1"><i class="fas fa-fw fa-trash-alt"></i></a>';
+                            data-original-title="Hapus" class="btn btn-danger btn-sm hapusKelas ml-1"><i class="fas fa-fw fa-trash-alt"></i></a>';
 
                         return $button;
                     })
@@ -48,19 +35,8 @@ class AlumniController extends Controller
                 return $allData;
             }
 
-            $statusPernikahan = StatusPernikahan::all();
-            $alumniAngkatan = AlumniAngkatan::all();
-            $jurusan = Jurusan::all();
-            $posisiSaatIni = PosisiSaatIni::all();
-            $kelas = Kelas::all();
-
-            return view('alumni', [
+            return view('kelas', [
                 'data' => $data,
-                'status_pernikahan' => $statusPernikahan,
-                'alumni_angkatan' => $alumniAngkatan,
-                'jurusan' => $jurusan,
-                'posisi_saat_ini' => $posisiSaatIni,
-                'kelas' => $kelas,
             ]);
         } catch (\Throwable $th) {
             return $th->getMessage();
@@ -88,34 +64,17 @@ class AlumniController extends Controller
         try {
             DB::beginTransaction();
             $data = [
-                'nama_lengkap' => $request->nama_lengkap,
-                'tanggal_lahir' => $request->tanggal_lahir,
-                'jenis_kelamin' => $request->jenis_kelamin,
-                'id_status_menikah' => $request->status_pernikahan,
-                'id_alumni_angkatan' => $request->alumni_angkatan,
-                'id_jurusan' => $request->jurusan,
-                'id_posisi_saat_ini' => $request->posisi_saat_ini,
-                'nama_instansi' => $request->nama_instansi,
-                'bidang_instansi' => $request->bidang_instansi,
-                'posisi_pekerjaan' => $request->posisi_pekerjaan,
-                'alamat_lengkap' => $request->alamat_lengkap,
-                'nis' => $request->nis,
-                'tempat_lahir' => $request->tempat_lahir,
-                'id_kelas' => $request->kelas,
-                'jurusan_kuliah' => $request->jurusan_kuliah,
-                'wali_kelas' => $request->wali_kelas,
-                'nomor_telepon' => $request->nomor_telepon,
-                'tahun_menikah' => $request->tahun_menikah,
+                'kelas' => $request->kelas,
             ];
 
-            $alumni = Alumni::updateOrCreate([
-                'id' => $request->id_alumni
+            $kelas = Kelas::updateOrCreate([
+                'id' => $request->id_kelas
             ], $data);
 
             DB::commit();
             return response()->json([
                 'success' => 'Data berhasil disimpan',
-                'data' => $alumni
+                'data' => $kelas
             ]);
         } catch (\Throwable $th) {
             DB::rollback();
@@ -143,9 +102,9 @@ class AlumniController extends Controller
     public function edit($id)
     {
         try {
-            $alumni = Alumni::where('id', $id)->first();
+            $kelas = Kelas::where('id', $id)->first();
 
-            return response()->json($alumni);
+            return response()->json($kelas);
         } catch (\Throwable $th) {
             return $th->getMessage();
         }
@@ -174,12 +133,12 @@ class AlumniController extends Controller
         try {
             DB::beginTransaction();
 
-            $alumni = Alumni::where('id', $id)->delete();
+            $kelas = Kelas::where('id', $id)->delete();
 
             DB::commit();
             return response()->json([
                 'message' => 'Data berhasil dihapus',
-                'data' => $alumni
+                'data' => $kelas
             ]);
         } catch (\Throwable $th) {
             DB::rollBack();

@@ -1,4 +1,22 @@
 $(function () {
+    $(".admin-input").hide();
+    $(".user-input").hide();
+    $(".nama-lengkap").hide();
+
+    $("#role").change(function () {
+        var roleVal = $("#role").val();
+
+        if (roleVal === "superadmin" || roleVal === "guru") {
+            $(".admin-input").show();
+            $(".user-input").hide();
+            $(".nama-lengkap").show();
+        } else {
+            $(".user-input").show();
+            $(".admin-input").hide();
+            $(".nama-lengkap").show();
+        }
+    });
+
     // get data
     $.ajaxSetup({
         headers: {
@@ -6,7 +24,7 @@ $(function () {
         },
     });
     var table = $("#tableUser").DataTable({
-        // scrollX: true,
+        scrollX: true,
         // serverSide: true,
         processing: true,
         ajax: routeIndex,
@@ -22,16 +40,48 @@ $(function () {
                 searchable: false,
             },
             {
+                data: "nis",
+                name: "NIS",
+            },
+            {
+                data: "username",
+                name: "Username",
+            },
+            {
                 data: "name",
                 name: "Nama Lengkap",
             },
             {
-                data: "email",
-                name: "Email",
-            },
-            {
                 data: "role",
                 name: "Role",
+            },
+            {
+                data: "jenis_kelamin",
+                name: "Jenis Kelamin",
+            },
+            {
+                data: "tempat_lahir",
+                name: "Tempat Lahir",
+            },
+            {
+                data: "tanggal_lahir",
+                name: "Tanggal Lahir",
+            },
+            {
+                data: "wali_kelas",
+                name: "Wali Kelas",
+            },
+            {
+                data: "id_jurusan",
+                name: "Jurusan",
+            },
+            {
+                data: "id_alumni_angkatan",
+                name: "Alumni Angkatan",
+            },
+            {
+                data: "alamat_lengkap",
+                name: "alamat",
             },
         ],
     });
@@ -116,8 +166,16 @@ $(function () {
             // data
             $("#id_user").val(data.id);
             $("#nama_lengkap").val(data.name);
-            $("#email").val(data.email);
+            $("#nis").val(data.nis);
+            $("#jenis_kelamin").val(data.jenis_kelamin);
+            $("#tempat_lahir").val(data.tempat_lahir);
+            $("#tanggal_lahir").val(data.tanggal_lahir);
+            $("#jurusan").val(data.id_jurusan);
+            $("#wali_kelas").val(data.wali_kelas);
+            $("#alamat_lengkap").val(data.alamat_lengkap);
+            $("#username").val(data.username);
             $("#role").val(data.role);
+            $("#alumni_angkatan").val(data.id_alumni_angkatan);
         });
     });
 });

@@ -19,6 +19,8 @@
     {{-- footer --}}
     @include('auth.includes.footer')
 
+    {{-- js --}}
+   @stack('js')
 </body>
 
 </html>

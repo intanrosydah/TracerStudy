@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,18 +16,32 @@ class LoginController extends Controller
 
     public function authenticate(Request $request)
     {
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
+        if ($request->role !== "user") {
+            $credentials = $request->validate([
+                'username' => "required",
+                'password' => "required",
+            ]);
 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
+            if (Auth::attempt($credentials)) {
+                $request->session()->regenerate();
 
-            return redirect()->route('dashboard.index');
+                return redirect()->route('dashboard.index');
+            }
+        } else {
+            $credentials = $request->nis;
+            $userExists = User::where('nis', $credentials)->first();
+
+            if (isset($userExists)) {
+                return redirect()->route('form-alumni.index', [
+                    'data_alumni' => $userExists
+                ]);
+
+            } else {
+                return redirect()->route('login')->with('error', 'Data tidak ada disistem kami! Silakan masukan data yang valid.');
+            }
         }
 
-        return redirect()->route('login')->with('error', 'Data tidak ada disistem kami! mohon cek kembali.');
+        return redirect()->route('login')->with('error', 'Username atau Password salah! Mohon cek kembali.');
     }
 
     public function logout(Request $request)

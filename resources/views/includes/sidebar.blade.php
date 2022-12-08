@@ -15,9 +15,10 @@
             <span>Dashboard</span></a>
     </li>
 
-    @if (Auth::user()->role !== 'superadmin' || Auth::user()->role !== 'user')
-        <!-- Divider -->
-        <hr class="sidebar-divider">
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    @if (Auth::user()->role === 'superadmin' || Auth::user()->role === 'user')
 
         <!-- Heading -->
         <div class="sidebar-heading">
@@ -29,12 +30,12 @@
                 <i class="fas fa-fw fa-file-invoice"></i>
                 <span>Form Data Alumni</span></a>
         </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
     @endif
 
-
     @if (Auth::user()->role == 'superadmin')
-        <!-- Divider -->
-        <hr class="sidebar-divider">
 
         <!-- Heading -->
         <div class="sidebar-heading">
@@ -50,13 +51,14 @@
         <li class="nav-item">
             <a class="nav-link" href="{{ route('user.index') }}">
                 <i class="fas fa-fw fa-user"></i>
-                <span>User</span></a>
+                <span>Data User</span></a>
         </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
     @endif
 
     @if (Auth::user()->role == 'superadmin')
-        <!-- Divider -->
-        <hr class="sidebar-divider">
 
         <!-- Heading -->
         <div class="sidebar-heading">
@@ -77,12 +79,13 @@
                     <a class="collapse-item" href="{{ route('jurusan.index') }}">Jurusan</a>
                     <a class="collapse-item" href="{{ route('alumni-angkatan.index') }}">Alumni Angkatan</a>
                     <a class="collapse-item" href="{{ route('posisi-saat-ini.index') }}">Posisi Saat Ini</a>
+                    {{-- <a class="collapse-item" href="{{ route('kelas.index') }}">Kelas</a> --}}
                 </div>
             </div>
         </li>
 
+        <hr class="sidebar-divider my-0">
     @endif
-
 
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline mt-3">
