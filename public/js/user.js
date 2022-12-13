@@ -2,6 +2,7 @@ $(function () {
     $(".admin-input").hide();
     $(".user-input").hide();
     $(".nama-lengkap").hide();
+    $(".user-pass").hide();
 
     $("#role").change(function () {
         var roleVal = $("#role").val();
@@ -10,10 +11,12 @@ $(function () {
             $(".admin-input").show();
             $(".user-input").hide();
             $(".nama-lengkap").show();
+            $(".user-pass").show();
         } else {
             $(".user-input").show();
             $(".admin-input").hide();
             $(".nama-lengkap").show();
+            $(".user-pass").show();
         }
     });
 
@@ -163,6 +166,20 @@ $(function () {
         $.get(routeIndex + "/" + idUser + "/edit", function (data) {
             $("#modalHeading").html("Edit Data User");
             $("#modalUser").modal("show");
+
+            if (data.role === "superadmin" || data.role === "guru") {
+                $(".admin-input").show();
+                $(".user-input").hide();
+                $(".nama-lengkap").show();
+                $(".user-pass").show();
+                $("#pass").html("Tidak usah diisi jika tidak diganti");
+            } else {
+                $(".user-input").show();
+                $(".admin-input").hide();
+                $(".nama-lengkap").show();
+                $(".user-pass").show();
+                $("#pass").html("(Tidak usah diisi jika tidak diganti)");
+            }
             // data
             $("#id_user").val(data.id);
             $("#nama_lengkap").val(data.name);

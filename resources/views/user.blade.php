@@ -126,13 +126,13 @@
                 </div>
               </div>
 
-              <div class="form-row mt-4 admin-input">
+              <div class="form-row mt-4 user-pass">
                 <div class="col">
                   <label for="username">Username</label>
                   <input type="username" class="form-control" name="username" id="username" placeholder="Cth : username123">
                 </div>
                 <div class="col">
-                  <label for="password">Password</label>
+                  <label for="password">Password</label> <small class="text-danger float-right" id="pass"></small>
                   <input type="password" class="form-control" name="password" id="password" placeholder="Password">
                 </div>
               </div>

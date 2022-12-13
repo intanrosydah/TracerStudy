@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserNisController;
 use App\Http\Controllers\VLAlumniAngkatanController;
 use App\Http\Controllers\VLJurusanController;
 use App\Http\Controllers\VLKelasController;
@@ -31,9 +32,14 @@ Route::get('/', [LoginController::class, 'index'])->name('login');
 Route::post('/authenticate', [LoginController::class, 'authenticate'])->name('authenticate');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
+
+
 Route::middleware('auth')->group(function() {
     // DASHBOARD
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+
+    // INPUT NIS
+    Route::resource('user-nis', UserNisController::class);
 
     // MASTER BASE
     Route::resource('form-alumni', FormAlumniController::class);

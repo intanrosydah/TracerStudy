@@ -93,17 +93,25 @@
                     <thead>
                       <tr>
                         <th scope="col" width="10">No.</th>
-                        <th scope="col" width="190">Nama Lengkap</th>
-                        <th scope="col" width="150">Tanggal Lahir</th>
+                        <th scope="col" width="100">NIS</th>
+                        <th scope="col" width="190">Username</th>
+                        <th scope="col" width="250">Nama Lengkap</th>
+                        <th scope="col" width="150">Role</th>
                         <th scope="col" width="150">Jenis Kelamin</th>
-                        <th scope="col" width="150">Status Menikah</th>
-                        <th scope="col" width="150">Alumni Angkatan</th>
+                        <th scope="col" width="190">Tempat Lahir</th>
+                        <th scope="col" width="150">Tanggal Lahir</th>
+                        <th scope="col" width="250">Wali Kelas</th>
                         <th scope="col" width="150">Jurusan</th>
+                        <th scope="col" width="150">Alumni Angkatan</th>
+                        <th scope="col" width="150">Nomor Telepon</th>
+                        <th scope="col" width="150">Status Menikah</th>
+                        <th scope="col" width="150">Tahun Menikah</th>
                         <th scope="col" width="150">Posisi Saat Ini</th>
                         <th scope="col" width="150">Nama Instansi</th>
                         <th scope="col" width="150">Bidang Instansi</th>
+                        <th scope="col" width="150">Jurusan Kuliah</th>
                         <th scope="col" width="150">Posisi Pekerjaan</th>
-                        <th scope="col" width="270">Alamat Lengkap</th>
+                        <th scope="col" width="290">Alamat Lengkap</th>
                       </tr>
                     </thead>
                 </table>

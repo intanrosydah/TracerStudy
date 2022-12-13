@@ -1,4 +1,13 @@
 $(function () {
+    function restrictNumber(e) {
+        var newValue = this.value.replace(new RegExp(/[^0-9\.]/g, "ig"), "");
+        this.value = newValue;
+    }
+
+    $("#nis").on("input", restrictNumber);
+    $("#nomor_telepon").on("input", restrictNumber);
+    $("#tahun_menikah").on("input", restrictNumber);
+
     $.ajaxSetup({
         headers: {
             "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
@@ -6,7 +15,7 @@ $(function () {
     });
 
     // simpan data
-    $("#btnSubmitData").click(function (e) {
+    $("#btnSimpan").click(function (e) {
         e.preventDefault();
 
         var data = $("#formSubmitAlumni").serialize();
@@ -22,7 +31,7 @@ $(function () {
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
-                    title: "Data berhasil disubmit",
+                    title: "Data berhasil diperbaharui",
                     showConfirmButton: false,
                     timer: 1500,
                 });

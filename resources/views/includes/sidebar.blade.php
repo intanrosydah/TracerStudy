@@ -42,11 +42,11 @@
             Master Base
         </div>
 
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a class="nav-link" href="{{ route('alumni.index') }}">
                 <i class="fas fa-fw fa-users"></i>
                 <span>Data Alumni</span></a>
-        </li>
+        </li> --}}
 
         <li class="nav-item">
             <a class="nav-link" href="{{ route('user.index') }}">

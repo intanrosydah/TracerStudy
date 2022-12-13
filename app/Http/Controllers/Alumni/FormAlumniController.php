@@ -8,7 +8,9 @@ use App\Models\AlumniAngkatan;
 use App\Models\Jurusan;
 use App\Models\PosisiSaatIni;
 use App\Models\StatusPernikahan;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class FormAlumniController extends Controller
@@ -21,6 +23,17 @@ class FormAlumniController extends Controller
     public function index()
     {
         try {
+            if (Auth::user()->role === "user") {
+                $dataSet = User::with([
+                    'jurusan',
+                    'alumniAngkatan'
+                    ])
+                    ->where("id", Auth::user()->id)
+                    ->first();
+            } else {
+                $dataSet = null;
+            }
+
             $statusPernikahan = StatusPernikahan::all();
             $alumniAngkatan = AlumniAngkatan::all();
             $jurusan = Jurusan::all();
@@ -31,6 +44,7 @@ class FormAlumniController extends Controller
                 'alumni_angkatan' => $alumniAngkatan,
                 'jurusan' => $jurusan,
                 'posisi_saat_ini' => $posisSaatIni,
+                'data' => $dataSet,
             ]);
         } catch (\Throwable $th) {
             return $th->getMessage();
@@ -58,20 +72,27 @@ class FormAlumniController extends Controller
         try {
             DB::beginTransaction();
             $data = [
-                'nama_lengkap' => $request->nama_lengkap,
-                'tanggal_lahir' => $request->tanggal_lahir,
+                'nis' => $request->nis,
+                'name' => $request->nama_lengkap,
                 'jenis_kelamin' => $request->jenis_kelamin,
-                'id_status_menikah' => $request->status_pernikahan,
-                'id_alumni_angkatan' => $request->alumni_angkatan,
+                'tempat_lahir' => $request->tempat_lahir,
+                'tanggal_lahir' => $request->tanggal_lahir,
+                'wali_kelas' => $request->wali_kelas,
                 'id_jurusan' => $request->jurusan,
+                'id_alumni_angkatan' => $request->alumni_angkatan,
+                'nomor_telepon' => $request->nomor_telepon,
+                'id_status_menikah' => $request->status_pernikahan,
+                'tahun_menikah' => $request->tahun_menikah,
                 'id_posisi_saat_ini' => $request->posisi_saat_ini,
                 'nama_instansi' => $request->nama_instansi,
                 'bidang_instansi' => $request->bidang_instansi,
                 'posisi_pekerjaan' => $request->posisi_pekerjaan,
+                'jurusan_kuliah' => $request->jurusan_kuliah,
+                'email' => $request->email,
                 'alamat_lengkap' => $request->alamat_lengkap,
             ];
 
-            $alumni = Alumni::create($data);
+            $alumni = User::where('id', Auth::user()->id)->update($data);
 
             DB::commit();
             return response()->json([

@@ -12,114 +12,16 @@
                 Silakan isi data alumni
               </div>
             <div class="card-body mx-3">
-                {{-- <form id="formSubmitAlumni">
+                <form id="formSubmitAlumni">
                     {{ csrf_field() }}
                     <div class="form-row">
-                        <div class="col">
-                            <label for="nama_lengkap">Nama Lengkap</label>
-                            <input type="text" class="form-control" name="nama_lengkap" placeholder="Cth : Bill gates">
-                        </div>
-                        <div class="col">
-                            <label for="tanggal_lahir">Tanggal Lahir</label>
-                            <input type="date" class="form-control" name="tanggal_lahir">
-                        </div>
-                    </div>
-                    <div class="form-row mt-4">
-                        <div class="col">
-                            <label for="jenis_kelamin">Jenis Kelamin</label>
-                            <select class="form-control" name="jenis_kelamin" id="jenis_kelamin">
-                                <option value="">-- Piih Jenis Kelamin --</option>
-                                <option value="Laki-Laki">Laki-Laki</option>
-                                <option value="Perempuan">Perempuan</option>
-                            </select>
-                        </div>
-                        <div class="col">
-                            <label for="status_pernikahan">Status Pernikahan</label>
-                            <select class="form-control" name="status_pernikahan" id="status_pernikahan">
-                                <option value="">-- Piih Status Pernikahan--</option>
-                                @foreach ($status_pernikahan as $item)
-                                    <option value="{{ $item->id }}">{{ $item->status_pernikahan }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-row mt-4">
-                        <div class="col">
-                            <label for="alumni_angkatan">Alumni Angkatan</label>
-                            <select class="form-control" name="alumni_angkatan" id="alumni_angkatan">
-                                <option value="">-- Piih Tahun --</option>
-                                @foreach ($alumni_angkatan as $item)
-                                    <option value="{{ $item->id }}">{{ $item->tahun_angkatan }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="col">
-                            <label for="jurusan">Jurusan</label>
-                            <select class="form-control" name="jurusan" id="jurusan">
-                                <option value="">-- Piih Jurusan --</option>
-                                @foreach ($jurusan as $item)
-                                    <option value="{{ $item->id }}">{{ $item->jurusan }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-row mt-4">
-                        <div class="col">
-                            <label for="posisi_saat_ini">Posisi saat ini</label>
-                            <select class="form-control" name="posisi_saat_ini" id="posisi_saat_ini">
-                                <option value="">-- Piih Posisi Saat Ini --</option>
-                                @foreach ($posisi_saat_ini as $item)
-                                    <option value="{{ $item->id }}">{{ $item->posisi }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="col">
-                            <label for="nama_instansi">Nama Instansi (Tempat Kerja/Usaha/Universitas)</label>
-                            <input type="text" class="form-control" name="nama_instansi" placeholder="Cth : PT xxx">
-                        </div>
-                    </div>
-                    <div class="form-row mt-4">
-                        <div class="col">
-                            <label for="bidang_instansi">Bidang Instansi/Industri</label> <span class="float-right">(Optional)</span>
-                            <input type="text" class="form-control" name="bidang_instansi" placeholder="Cth : IT">
-                        </div>
-                        <div class="col">
-                            <label for="posisi_pekerjaan">Posisi Pekerjaan</label> <span class="float-right">(Optional)</span>
-                            <input type="text" class="form-control" name="posisi_pekerjaan" placeholder="Cth : Programmer">
-                        </div>
-                    </div>
-                    <div class="form-row mt-4">
-                        <div class="col">
-                            <label for="alamat_lengkap">Alamat Lengkap</label>
-                            <textarea name="alamat_lengkap" style="min-height: 100px" rows="5" type="text" class="form-control"></textarea>
-                        </div>
-                    </div>
-                    <div class="mt-5 text-right">
-                        <button type="reset" class="btn btn-secondary mx-1">Reset</button>
-                        <button type="submit" class="btn btn-primary" id="btnSubmitData"><i class="fas fa-fw fa-check"></i> Submit</button>
-                    </div>
-                </form> --}}
-
-                <form id="formUser">
-                    {{ csrf_field() }}
-                    <input type="hidden" name="id_user" id="id_user">
-                    <div class="form-row">
-                      <div class="col">
-                        <label for="role">Role</label>
-                        <select class="form-control" name="role" id="role">
-                            <option value="">-- Piih Role --</option>
-                            <option value="superadmin">Superadmin</option>
-                            <option value="guru">Guru</option>
-                            <option value="user">User</option>
-                        </select>
-                      </div>
                       <div class="col user-input">
                         <label for="nis">NIS</label>
-                        <input type="text" class="form-control" name="nis" maxlength="4" id="nis" placeholder="Cth : 1234">
+                        <input type="text" class="form-control" name="nis" maxlength="4" id="nis" value="{{ Auth::user()->role === "user" ? $data->nis : $data }}" placeholder="Cth : 1234">
                       </div>
                       <div class="col">
                         <label for="nama_lengkap">Nama Lengkap</label>
-                        <input type="text" class="form-control" name="nama_lengkap" id="nama_lengkap" placeholder="Cth : Bill gates">
+                        <input type="text" class="form-control" name="nama_lengkap" id="nama_lengkap" value="{{ Auth::user()->role === "user" ? $data->name : $data }}" placeholder="Cth : Bill gates">
                       </div>
                     </div>
                     <div class="form-row mt-4 user-input">
@@ -127,29 +29,29 @@
                         <label for="jenis_kelamin">Jenis Kelamin</label>
                         <select class="form-control" name="jenis_kelamin" id="jenis_kelamin">
                             <option value="">-- Piih Jenis Kelamin --</option>
-                            <option value="Laki-Laki">Laki-Laki</option>
-                            <option value="Perempuan">Perempuan</option>
+                            <option value="Laki-Laki" {{ Auth::user()->role === "user" && $data->jenis_kelamin === "Laki-Laki" ? "selected" : "" }}>Laki-Laki</option>
+                            <option value="Perempuan" {{ Auth::user()->role === "user" && $data->jenis_kelamin === "Perempuan" ? "selected" : "" }}>Perempuan</option>
                         </select>
-                    </div>
+                      </div>
                       <div class="col">
                           <label for="tempat_lahir">Tempat Lahir</label>
-                          <input type="text" class="form-control" name="tempat_lahir" id="tempat_lahir" placeholder="Cth : Sidoarjo">
+                          <input type="text" class="form-control" value="{{ Auth::user()->role === "user" ? $data->tempat_lahir : $data }}" name="tempat_lahir" id="tempat_lahir" placeholder="Cth : Sidoarjo">
                       </div>
                       <div class="col">
                           <label for="tanggal_lahir">Tanggal Lahir</label>
-                          <input type="date" class="form-control" name="tanggal_lahir" id="tanggal_lahir">
+                          <input type="date" class="form-control" value="{{ Auth::user()->role === "user" ? $data->tanggal_lahir : $data }}" name="tanggal_lahir" id="tanggal_lahir">
                       </div>
                   </div>
 
                   <div class="form-row mt-4 user-input">
                     <div class="col">
                       <label for="wali_kelas">Wali Kelas</label>
-                      <input type="text" class="form-control" name="wali_kelas" id="wali_kelas" placeholder="Cth : Bu Mega">
+                      <input type="text" class="form-control" value="{{ Auth::user()->role === "user" ? $data->wali_kelas : $data }}" name="wali_kelas" id="wali_kelas" placeholder="Cth : Bu Mega">
                     </div>
                     <div class="col">
                       <label for="jurusan">Jurusan</label>
                       <select class="form-control" name="jurusan" id="jurusan">
-                          <option value="">-- Piih Jurusan --</option>
+                          <option value="{{ Auth::user()->role === "user" ? $data->id_jurusan : $data }}">{{ Auth::user()->role === "user" && isset($data->id_jurusan) ? $data->jurusan->jurusan : "Pilih Jurusan" }}</option>
                           @foreach ($jurusan as $item)
                               <option value="{{ $item->id }}">{{ $item->jurusan }}</option>
                           @endforeach
@@ -158,7 +60,7 @@
                     <div class="col">
                       <label for="alumni_angkatan">Alumni Angkatan</label>
                       <select class="form-control" name="alumni_angkatan" id="alumni_angkatan">
-                          <option value="">-- Piih Tahun --</option>
+                        <option value="{{ Auth::user()->role === "user" ? $data->id_alumni_angkatan : $data }}">{{ Auth::user()->role === "user" && isset($data->id_alumni_angkatan) ? $data->alumniAngkatan->tahun_angkatan : "Pilih Jurusan" }}</option>
                           @foreach ($alumni_angkatan as $item)
                               <option value="{{ $item->id }}">{{ $item->tahun_angkatan }}</option>
                           @endforeach
@@ -191,7 +93,9 @@
                       <label for="posisi_saat_ini">Posisi saat ini</label>
                       <select class="form-control" name="posisi_saat_ini" id="posisi_saat_ini">
                           <option value="">-- Piih Posisi Saat Ini --</option>
-                          @forea
+                          @foreach ($posisi_saat_ini as $item)
+                              <option value="{{ $item->id }}">{{ $item->posisi }}</option>
+                          @endforeach
                       </select>
                     </div>
                     <div class="col">
@@ -222,18 +126,7 @@
                   <div class="form-row mt-4 user-input">
                     <div class="col">
                       <label for="alamat_lengkap">Alamat Lengkap</label>
-                      <textarea name="alamat_lengkap" id="alamat_lengkap" style="min-height: 100px" rows="5" type="text" class="form-control"></textarea>
-                    </div>
-                  </div>
-
-                  <div class="form-row mt-4">
-                    <div class="col">
-                      <label for="username">Username</label>
-                      <input type="username" class="form-control" name="username" id="username" placeholder="Cth : username123">
-                    </div>
-                    <div class="col">
-                      <label for="password">Password</label>
-                      <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+                      <textarea name="alamat_lengkap" id="alamat_lengkap" style="min-height: 100px" rows="5" type="text" class="form-control" placeholder="Masukkan alamat lengkap">{{ Auth::user()->role === "user" && $data->alamat_lengkap ? $data->alamat_lengkap : $data }}</textarea>
                     </div>
                   </div>
 

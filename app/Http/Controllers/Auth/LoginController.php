@@ -25,16 +25,19 @@ class LoginController extends Controller
             if (Auth::attempt($credentials)) {
                 $request->session()->regenerate();
 
-                return redirect()->route('dashboard.index');
+                if (Auth::user()->role === 'user') {
+                    return redirect()->route('user-nis.index');
+                } else {
+                    return redirect()->route('dashboard.index');
+                }
+
             }
         } else {
             $credentials = $request->nis;
             $userExists = User::where('nis', $credentials)->first();
 
             if (isset($userExists)) {
-                return redirect()->route('form-alumni.index', [
-                    'data_alumni' => $userExists
-                ]);
+                return redirect()->route('form-alumni.index');
 
             } else {
                 return redirect()->route('login')->with('error', 'Data tidak ada disistem kami! Silakan masukan data yang valid.');

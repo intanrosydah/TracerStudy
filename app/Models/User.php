@@ -12,16 +12,6 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    public function alumniAngkatan()
-    {
-        return $this->belongsTo(AlumniAngkatan::class, 'id_alumni_angkatan', 'id');
-    }
-
-    public function jurusan()
-    {
-        return $this->belongsTo(Jurusan::class, 'id_jurusan', 'id');
-    }
-
     /**
      * The attributes that are mass assignable.
      *
@@ -57,4 +47,23 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function statusPernikahan()
+    {
+        return $this->belongsTo(StatusPernikahan::class, 'id_status_menikah', 'id');
+    }
+
+    public function alumniAngkatan()
+    {
+        return $this->belongsTo(AlumniAngkatan::class, 'id_alumni_angkatan', 'id');
+    }
+
+    public function jurusan()
+    {
+        return $this->belongsTo(Jurusan::class, 'id_jurusan', 'id');
+    }
+
+    public function posisiSaatIni()
+    {
+        return $this->belongsTo(PosisiSaatIni::class, 'id_posisi_saat_ini', 'id');
+    }
 }

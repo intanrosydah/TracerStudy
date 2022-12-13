@@ -5,6 +5,7 @@ $(function () {
             "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
         },
     });
+
     var table = $("#tableDashboardAlumni").DataTable({
         scrollX: true,
         // serverSide: true,
@@ -17,31 +18,59 @@ $(function () {
                 searchable: false,
             },
             {
-                data: "nama_lengkap",
+                data: "nis",
+                name: "NIS",
+            },
+            {
+                data: "username",
+                name: "Username",
+            },
+            {
+                data: "name",
                 name: "Nama Lengkap",
+            },
+            {
+                data: "role",
+                name: "Role",
+            },
+            {
+                data: "jenis_kelamin",
+                name: "Jenis Kelamin",
+            },
+            {
+                data: "tempat_lahir",
+                name: "Tempat Lahir",
             },
             {
                 data: "tanggal_lahir",
                 name: "Tanggal Lahir",
             },
             {
-                data: "jenis_kelamin",
-                name: "Jenis kelamin",
+                data: "wali_kelas",
+                name: "Wali Kelas",
             },
             {
-                data: "status_pernikahan.status_pernikahan",
-                name: "Status Pernikahan",
-            },
-            {
-                data: "alumni_angkatan.tahun_angkatan",
-                name: "Alumni Angkatan",
-            },
-            {
-                data: "jurusan.jurusan",
+                data: "id_jurusan",
                 name: "Jurusan",
             },
             {
-                data: "posisi_saat_ini.posisi",
+                data: "id_alumni_angkatan",
+                name: "Alumni Angkatan",
+            },
+            {
+                data: "nomor_telepon",
+                name: "Nomor Telepon",
+            },
+            {
+                data: "id_status_menikah",
+                name: "Status Menikah",
+            },
+            {
+                data: "tahun_menikah",
+                name: "Tahun Menikah",
+            },
+            {
+                data: "id_posisi_saat_ini",
                 name: "Posisi Saat Ini",
             },
             {
@@ -53,12 +82,16 @@ $(function () {
                 name: "Bidang Instansi",
             },
             {
+                data: "jurusan_kuliah",
+                name: "Jurusan Kuliah",
+            },
+            {
                 data: "posisi_pekerjaan",
                 name: "Posisi Pekerjaan",
             },
             {
                 data: "alamat_lengkap",
-                name: "Alamat ",
+                name: "alamat",
             },
         ],
     });

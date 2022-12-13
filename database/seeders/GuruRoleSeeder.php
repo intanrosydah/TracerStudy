@@ -17,8 +17,9 @@ class GuruRoleSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'name' => 'guru',
-            'email' => 'guru@mail.com',
+            'name' => 'guru2',
+            'username' => 'guru2',
+            'email' => 'guru2@mail.com',
             'role' => 'guru',
             'password' => Hash::make('guru123'),
             'remember_token' => Str::random(60)
