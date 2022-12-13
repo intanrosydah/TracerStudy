@@ -172,7 +172,7 @@ $(function () {
                 $(".user-input").hide();
                 $(".nama-lengkap").show();
                 $(".user-pass").show();
-                $("#pass").html("Tidak usah diisi jika tidak diganti");
+                $("#pass").html("(Tidak usah diisi jika tidak diganti)");
             } else {
                 $(".user-input").show();
                 $(".admin-input").hide();
