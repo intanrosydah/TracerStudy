@@ -50,7 +50,6 @@ Route::middleware('auth')->group(function() {
     Route::resource('user', UserController::class);
     // END OF MASTER
 
-
     // VALUE LIST BASE
     Route::resource('status-pernikahan', VLStatusPernikahanController::class);
     Route::resource('jurusan', VLJurusanController::class);
