@@ -58,6 +58,29 @@
         <hr class="sidebar-divider">
     @endif
 
+      <!-- Heading -->
+    <div class="sidebar-heading">
+        List Alumni
+    </div>
+
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePagesListAlumni" aria-expanded="true"
+            aria-controls="collapsePagesListAlumni">
+            <i class="fas fa-fw fa-users"></i>
+            <span>List Alumni</span>
+        </a>
+        <div id="collapsePagesListAlumni" class="collapse" aria-labelledby="headingPages"
+            data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="{{ route('dataAlumni2019') }}">Tahun 2019</a>
+            </div>
+        </div>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
     @if (Auth::user()->role == 'superadmin')
 
         <!-- Heading -->

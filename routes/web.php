@@ -5,6 +5,7 @@ use App\Http\Controllers\Alumni\AlumniController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ListAlumniController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserNisController;
@@ -57,6 +58,9 @@ Route::middleware('auth')->group(function() {
     Route::resource('posisi-saat-ini', VLPosisiSaatIniController::class);
     Route::resource('kelas', VLKelasController::class);
     // END OF VALUE LIST BASE
+
+    // List Alumni Per Tahun
+    Route::get('/list-data-alumni-2019', [ListAlumniController::class, 'ListDataAlumni2019'])->name('dataAlumni2019');
 
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::post('/update-password', [ProfileController::class, 'updatePassword'])->name('update-password');
