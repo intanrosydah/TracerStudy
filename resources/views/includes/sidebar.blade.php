@@ -18,7 +18,7 @@
     <!-- Divider -->
     <hr class="sidebar-divider">
 
-    @if (Auth::user()->role === 'superadmin' || Auth::user()->role === 'user')
+    @if (Auth::user()->role === 'user')
 
         <!-- Heading -->
         <div class="sidebar-heading">
