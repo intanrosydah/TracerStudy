@@ -50,11 +50,11 @@ $(function () {
                 name: "Wali Kelas",
             },
             {
-                data: "id_jurusan",
+                data: "jurusan",
                 name: "Jurusan",
             },
             {
-                data: "id_alumni_angkatan",
+                data: "alumni_angkatan",
                 name: "Alumni Angkatan",
             },
             {
@@ -62,7 +62,7 @@ $(function () {
                 name: "Nomor Telepon",
             },
             {
-                data: "id_status_menikah",
+                data: "status_pernikahan",
                 name: "Status Menikah",
             },
             {
@@ -70,7 +70,7 @@ $(function () {
                 name: "Tahun Menikah",
             },
             {
-                data: "id_posisi_saat_ini",
+                data: "posisi_saat_ini",
                 name: "Posisi Saat Ini",
             },
             {
