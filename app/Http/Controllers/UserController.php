@@ -30,18 +30,26 @@ class UserController extends Controller
                 ->orderBy('id', "desc")
                 ->get();
 
-            if ($request->ajax()) {
-                $allData = DataTables::of($data)
-                    ->addIndexColumn()
-                    ->addColumn('aksi', function($row) {
-                        $button = '<a href="javascript:void(0)" data-toggle="tooltip" data-id="'. $row->id .'"
-                            data-original-title="Edit" class="btn btn-success btn-sm editUser"><i class="fas fa-fw fa-pen"></i></a>';
-                        $button .= '<a href="javascript:void(0)" data-toggle="tooltip" data-id="'. $row->id .'"
-                            data-original-title="Hapus" class="btn btn-danger btn-sm hapusUser ml-1"><i class="fas fa-fw fa-trash-alt"></i></a>';
+            $mapingData = $data->map(function ($query) {
+                return [
+                    'id' => $query->id ?? '-',
+                    'nis' => $query->nis ?? '-',
+                    'username' => $query->username ?? '-',
+                    'name' => $query->name ?? '-',
+                    'role' => $query->role ?? '-',
+                    'jenis_kelamin' => $query->jenis_kelamin ?? '-',
+                    'tempat_lahir' => $query->tempat_lahir ?? '-',
+                    'tanggal_lahir' => $query->tanggal_lahir ?? '-',
+                    'wali_kelas' => $query->wali_kelas ?? '-',
+                    'jurusan' => $query->jurusan->jurusan ?? '-',
+                    'alumni_angkatan' => $query->alumniAngkatan->tahun_angkatan ?? '-',
+                    'alamat_lengkap' => $query->alamat_lengkap ?? '-',
+                ];
+            });
 
-                        return $button;
-                    })
-                    ->rawColumns(['aksi'])
+            if ($request->ajax()) {
+                $allData = DataTables::of($mapingData)
+                    ->addIndexColumn()
                     ->make(true);
 
                 return $allData;

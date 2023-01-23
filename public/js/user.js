@@ -41,6 +41,21 @@ $(function () {
                 data: "aksi",
                 name: "Aksi",
                 searchable: false,
+                render: function (data, type, row, meta) {
+                    var btnEditData =
+                        `<a href="javascript:void(0)" data-toggle="tooltip" data-id="` +
+                        row.id +
+                        `"
+                        data-original-title="Edit" class="btn btn-success btn-sm editUser"><i class="fas fa-fw fa-pen"></i></a>`;
+
+                    var btnDeleteData =
+                        `<a href="javascript:void(0)" data-toggle="tooltip" data-id="` +
+                        row.id +
+                        `"
+                        data-original-title="Hapus" class="btn btn-danger btn-sm hapusUser ml-1"><i class="fas fa-fw fa-trash-alt"></i></a>`;
+
+                    return btnEditData + btnDeleteData;
+                },
             },
             {
                 data: "nis",
@@ -75,11 +90,11 @@ $(function () {
                 name: "Wali Kelas",
             },
             {
-                data: "id_jurusan",
+                data: "jurusan",
                 name: "Jurusan",
             },
             {
-                data: "id_alumni_angkatan",
+                data: "alumni_angkatan",
                 name: "Alumni Angkatan",
             },
             {
