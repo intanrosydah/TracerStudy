@@ -41,4 +41,33 @@ $(function () {
             },
         });
     });
+
+    $("#ubahFoto").on("click", function () {
+        $("#upload_image").trigger("click");
+        $("#upload_image").change(function (e) {
+            e.preventDefault();
+
+            var dataUploadImage = $("#formUploadImage").serialize();
+
+            $.ajax({
+                data: dataUploadImage,
+                url: routeUploadImage,
+                enctype: "multipart/form-data",
+                type: "POST",
+                dataType: "json",
+                success: function (data) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Foto berhasil diunggah!",
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                },
+                error: function (data) {
+                    console.log("Error: " + data);
+                },
+            });
+        });
+    });
 });

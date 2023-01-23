@@ -62,6 +62,7 @@ Route::middleware('auth')->group(function() {
     Route::get('/list-data-alumni-2019', [ListAlumniController::class, 'ListDataAlumni2019'])->name('dataAlumni2019');
 
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+    Route::post('/upload-image', [ProfileController::class, 'uploadImage'])->name('upload-image');
     Route::post('/update-password', [ProfileController::class, 'updatePassword'])->name('update-password');
 });
 

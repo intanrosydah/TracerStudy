@@ -45,4 +45,17 @@ class ProfileController extends Controller
             return $th->getMessage();
         }
     }
+
+    public function uploadImage(Request $request)
+    {
+        try {
+            DB::beginTransaction();
+            dd($request->all());
+
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollback();
+            return $th->getMessage();
+        }
+    }
 }

@@ -17,18 +17,22 @@
 <div class="container">
     <div class="row">
     <div class="col-lg-4">
-        <div class="card shadow mb-4">
-        <div class="card-body text-center">
-            {{-- <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
-            class="rounded-circle img-fluid" style="width: 150px;"> --}}
-            <img class="img-profile rounded-circle"
-                    src="img/undraw_profile.svg" style="width: 150px;">
-            <h5 class="my-3">{{ Auth::user()->name }}</h5>
-            <div class="d-flex justify-content-center mb-2">
-            <button type="button" class="btn btn-outline-primary">Ubah Foto</button>
+        <form id="formUploadImage" enctype="multipart/form-data">
+            {{ csrf_field() }}
+            <div class="card shadow mb-4">
+                <div class="card-body text-center">
+                    {{-- <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+                    class="rounded-circle img-fluid" style="width: 150px;"> --}}
+                    <img class="img-profile rounded-circle"
+                            src="img/undraw_profile.svg" style="width: 150px;">
+                    <h5 class="my-3">{{ Auth::user()->name }}</h5>
+                    <div class="d-flex justify-content-center mb-2">
+                    <button type="button" id="ubahFoto" class="btn btn-outline-primary">Ubah Foto</button>
+                    <input type="file" class="custom-file-input" name="upload_image" id="upload_image" style="display: none" />
+                    </div>
+                </div>
             </div>
-        </div>
-        </div>
+        </form>
     </div>
     <div class="col-lg-8">
         <div class="card shadow mb-4">
@@ -90,6 +94,7 @@
 @push('js')
 <script>
     var routeSimpan = '<?php echo route('update-password') ?>';
+    var routeUploadImage = '<?php echo route('upload-image') ?>';
 </script>
 
 <script src="{{ asset('js/profile.js') }}"></script>
