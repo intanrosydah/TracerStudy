@@ -37,7 +37,7 @@ class ListAlumniController extends Controller
                 'nis' => $query->nis ?? '-',
                 'username' => $query->username ?? '-',
                 'name' => $query->name ?? '-',
-                'role' => $query->role ?? '-',
+                'role' => $query->role == 'user' ? 'Alumni' : '-',
                 'jenis_kelamin' => $query->jenis_kelamin ?? '-',
                 'tempat_lahir' => $query->tempat_lahir ?? '-',
                 'tanggal_lahir' => $query->tanggal_lahir ?? '-',
