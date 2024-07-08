@@ -1,4 +1,7 @@
-<ul class="navbar-nav bg-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+<ul style= "background: #000046;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #1CB5E0, #000046);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #1CB5E0, #000046); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+;"class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="">
@@ -74,6 +77,8 @@
             data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="{{ route('dataAlumni2019') }}">Tahun 2019</a>
+                <a class="collapse-item" href="{{ route('dataAlumni2020') }}">Tahun 2020</a>
+                <a class="collapse-item" href="{{ route('dataAlumni2021') }}">Tahun 2021</a>
             </div>
         </div>
     </li>

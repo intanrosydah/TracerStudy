@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('title')
-<h2 class="h4 mb-4 text-gray-800">Profile</h2>
+<h2 class="h4 mb-4 text-light">Profile</h2>
 @endsection
 
 @section('content')

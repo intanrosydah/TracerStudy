@@ -21,7 +21,7 @@ class SuperadminRoleSeeder extends Seeder
             'email' => 'superadmin2@mail.com',
             'username' => 'superadmin2',
             'role' => 'superadmin',
-            'password' => Hash::make('superadmin123'),
+            'password' => Hash::make('superadmin2'),
             'remember_token' => Str::random(60)
         ]);
     }

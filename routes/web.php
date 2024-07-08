@@ -60,10 +60,15 @@ Route::middleware('auth')->group(function() {
 
     // List Alumni Per Tahun
     Route::get('/list-data-alumni-2019', [ListAlumniController::class, 'ListDataAlumni2019'])->name('dataAlumni2019');
+    Route::get('/list-data-alumni-2020', [ListAlumniController::class, 'ListDataAlumni2020'])->name('dataAlumni2020');
+    Route::get('/list-data-alumni-2021', [ListAlumniController::class, 'ListDataAlumni2021'])->name('dataAlumni2021');
 
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::post('/upload-image', [ProfileController::class, 'uploadImage'])->name('upload-image');
     Route::post('/update-password', [ProfileController::class, 'updatePassword'])->name('update-password');
+
+    Route::get('/upload', 'UploadController@upload');
+    Route::post('/upload/proses', 'UploadController@proses_upload');
 });
 
 

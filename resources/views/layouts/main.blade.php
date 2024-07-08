@@ -18,7 +18,7 @@
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
+        <div style="background-color:#000046;" id="content-wrapper" class="d-flex flex-column">
 
             <!-- Main Content -->
             <div id="content">

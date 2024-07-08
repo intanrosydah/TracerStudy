@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('title')
-<h2 class="h4 mb-4 text-light">Dashboard</h2>
+<h2 class="h4 mb-4 text-light">Data Alumni Tahun 2020</h2>
 @endsection
 
 @section('content')
@@ -13,7 +13,7 @@
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                             Teknik Komputer Jaringan</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $tkj }} Orang</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $tkj ?? 0 }} Orang</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-code fa-2x text-gray-300"></i>
@@ -31,7 +31,7 @@
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                             Multimedia</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $multimedia }} Orang</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $multimedia ?? 0 }} Orang</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-video fa-2x text-gray-300"></i>
@@ -51,7 +51,7 @@
                             Rekaya Perangkat Lunak</div>
                         <div class="row no-gutters align-items-center">
                             <div class="col-auto">
-                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $rpl }} Orang</div>
+                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $rpl ?? 0 }} Orang</div>
                             </div>
                         </div>
                     </div>
@@ -71,7 +71,7 @@
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                             Manajemen Bisnis</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $bisnis }} Orang</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $bisnis ?? 0 }} Orang</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-business-time fa-2x text-gray-300"></i>
@@ -86,10 +86,10 @@
     <div class="col">
         <div class="card o-hidden border-0 shadow-lg">
             <div class="card-header">
-                Data Alumni
-             </div>
-             <div class="card-body">
-                <table class="table table-hover" id="tableDashboardAlumni">
+               List Data Alumni Tahun 2020
+            </div>
+            <div class="card-body">
+                <table class="table table-hover" id="tableListAlumni2020">
                     <thead>
                       <tr>
                         <th scope="col" width="10">No.</th>
@@ -122,9 +122,9 @@
 @endsection
 
 @push('js')
-<script>
-    var routeIndex = '<?php echo route('dashboard.index') ?>';
-</script>
+    <script>
+        var routeDataAlumni2020 = '<?php echo route('dataAlumni2020') ?>';
+    </script>
 
-<script src="{{ asset('js/dashboard.js') }}"></script>
+    <script src="{{ asset('js/list-alumni2020.js') }}"></script>
 @endpush
