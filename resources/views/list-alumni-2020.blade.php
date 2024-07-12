@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('title')
-<h2 class="h4 mb-4 text-light">Data Alumni Tahun 2020</h2>
+<h2 class="h4 mb-4 text-grey">Data Alumni Tahun 2020</h2>
 @endsection
 
 @section('content')

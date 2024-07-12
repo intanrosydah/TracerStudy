@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('title')
-<h2 class="h4 mb-4 text-light">Form Data Alumni</h2>
+<h2 class="h4 mb-4 text-grey">Form Data Alumni</h2>
 @endsection
 
 @section('content')
