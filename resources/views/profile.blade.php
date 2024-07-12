@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('title')
-<h2 class="h4 mb-4 text-light">Profile</h2>
+<h2 class="h4 mb-4 text-gray-800">Profile</h2>
 @endsection
 
 @section('content')
@@ -23,12 +23,24 @@
                 <div class="card-body text-center">
                     {{-- <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
                     class="rounded-circle img-fluid" style="width: 150px;"> --}}
-                    <img class="img-profile rounded-circle"
-                            src="img/undraw_profile.svg" style="width: 150px;">
+                    @if (isset($data->image))
+                        <img class="img-profile rounded-circle"
+                        src="{{ asset($data->image) }}" style="width: 150px;">
+                    @else
+                        <img class="img-profile rounded-circle"
+                                src="img/undraw_profile.svg" style="width: 150px;">
+                    @endif
+
                     <h5 class="my-3">{{ Auth::user()->name }}</h5>
                     <div class="d-flex justify-content-center mb-2">
-                    <button type="button" id="ubahFoto" class="btn btn-outline-primary">Ubah Foto</button>
-                    <input type="file" class="custom-file-input" name="upload_image" id="upload_image" style="display: none" />
+                    {{-- <button type="button" id="ubahFoto" class="btn btn-outline-primary">Ubah Foto</button> --}}
+                        <div class="custom-file my-2">
+                            <input type="file" class="custom-file-input" id="upload_image" name="upload_image"  accept="image/png, image/jpeg, image/jpg, image/gif">
+                            <label class="custom-file-label" for="upload_image">Choose file</label>
+                            <small style="color:#5475c1">
+                                Accepted file : *.jpg, *jpeg, *.png, *.gif
+                            </small>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -98,4 +110,5 @@
 </script>
 
 <script src="{{ asset('js/profile.js') }}"></script>
+<script src="{{ asset('js/update-image.js') }}"></script>
 @endpush

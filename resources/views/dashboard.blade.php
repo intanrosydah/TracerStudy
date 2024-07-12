@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('title')
-<h2 class="h4 mb-4 text-light">Dashboard</h2>
+<h2 class="h4 mb-4 text-grey">Dashboard</h2>
 @endsection
 
 @section('content')
@@ -48,7 +48,7 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                            Rekaya Perangkat Lunak</div>
+                            Rekayasa Perangkat Lunak</div>
                         <div class="row no-gutters align-items-center">
                             <div class="col-auto">
                                 <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $rpl }} Orang</div>

@@ -28,20 +28,20 @@
                         @endif
                         <form action="{{ route('authenticate') }}" method="post" class="user" enctype="multipart/form-data">
                             {{ csrf_field() }}
-                            {{-- <div class="form-group">
+                             <div class="form-group">
                                 <select class="form-control" style="border-radius: 10rem; height: 46px; font-size: 0.9rem;" name="role" id="role">
                                     <option value="">-- Pilih Role --</option>
                                     <option value="superadmin_or_guru">Superadmin Atau Guru</option>
                                     <option value="user">Alumni</option>
                                 </select>
-                            </div> --}}
-                            {{-- <div id="nisLogin">
+                            </div> 
+                            <div id="nisLogin">
                                 <div class="form-group">
                                     <input type="text" name="nis" class="form-control form-control-user"
                                         id="nis"
                                         placeholder="Masukan Nomor Induk Siswa (NIS)" maxlength="4" required>
                                 </div>
-                            </div> --}}
+                            </div> 
 
                             <div>
                                 <div class="form-group">
@@ -59,13 +59,13 @@
                                 Login
                             </button>
                         </form>
-                        {{-- <hr> --}}
-                        {{-- <div class="text-center">
+                        <hr> 
+                         <div class="text-center">
                             <a class="small" href="forgot-password.html">Lupa Password?</a>
-                        </div> --}}
-                        {{-- <div class="text-center">
+                        </div> 
+                         <div class="text-center">
                             <a class="small" href="{{ route('register.index') }}">Buat Akun!</a>
-                        </div> --}}
+                        </div>
                     </div>
                 </div>
             </div>
